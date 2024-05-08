@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class BattleshipSystem {
     public final static int HEIGHT = 10;
     public final static int WIDTH = 10;
@@ -14,12 +16,28 @@ public class BattleshipSystem {
     public Object bs;
 
     //========================= Private Method======================//
-
+    private void CarrierPowerAttack(Player opponent) {
+         // Generate random row and column indices
+         Random rand = new Random();
+         int row = rand.nextInt(10); // Assuming a 10x10 grid
+         int col = rand.nextInt(10);
+         // Check if there's a ship at the randomly chosen location
+         Ships ship = opponent.ShipGrid[row][col];
+         if (ship != null) {
+             // Ship exists at this location, mark it as hit
+             opponent.ShipGrid[row][col] = null; // Mark it as hit (assuming 2 represents a hit)
+             currPlayer.AttackGrid[row][col] = 1;
+         } 
+         else {
+             // No ship at this location, try again
+             CarrierPowerAttack(opponent); // Recursive call to try again
+         }
+    }
     //========================= PUBLIC METHODS======================//
     //MADE BY AHMHED & AAYUSH
 
 
-    public int pPowerAttack(int col, int row, int ShipType, int place ) {
+   /*  public int pPowerAttack(int col, int row, int ShipType, int place ) {
         //if the ship is not out of bounds
         if (col >= 0 && col < HEIGHT && row >= 0 && row < 7) {
             //if the ship is a Carrier
@@ -52,7 +70,7 @@ public class BattleshipSystem {
             // Return -1 if row and col are out of bounds
             return -1;
         }
-    }
+    } 
     
             {//if the ship is a Battleship
             if (Ship == 2) {
@@ -77,7 +95,7 @@ public class BattleshipSystem {
             }
             }
             return 0; // DEFAULT VALUE NEEDS TO BE CHANGED
-    }
+    } */
 
     public int InsertShip(int row, int col, Ships ShipType, int orientation) {
         int size = ShipType.GetSize();
@@ -124,8 +142,8 @@ public class BattleshipSystem {
             if (currPlayer.GetName() == 0) {
                 // Check if the attack hits a ship on the opponent's grid
                 if (allPlayers[1].ShipGrid[row][col] != null) {
-                    currPlayer.AttackGrid[row][col] = 1; // Mark hit on opponent's grid
-                    allPlayers[1].ShipGrid[row][col].
+                    currPlayer.AttackGrid[row][col] = 1; // Mark hit on players grid
+                    allPlayers[1].ShipGrid[row][col] = null; //update opponents shipgrid to null
                     return SUCCESFULL; // Hit
                 } 
                 else {
@@ -136,6 +154,7 @@ public class BattleshipSystem {
             else {
                 if (allPlayers[0].ShipGrid[row][col] != null) {
                     currPlayer.AttackGrid[row][col] = 1; // Mark hit on currPlayers grid
+                    allPlayers[0].ShipGrid[row][col] = null; //update one opponents shipgrid to null
                     return SUCCESFULL; // Hit
                 } 
                 else {
@@ -150,9 +169,20 @@ public class BattleshipSystem {
         if (row > AttackGrid.length || col > AttackGrid[0].length) {
             return OUT_OF_BOUNDS;
         }
-        else
-        
-        
+        else {
+            if (Ship == 1) { //Carrier
+                if (currPlayer.GetName() == 0) {
+                    CarrierPowerAttack(allPlayers[0]); 
+                }
+                else {
+                    CarrierPowerAttack(allPlayers[1]);
+                }
+                return SUCCESFULL;
+            }
+            if (Ship == 2) { //Battleship
+                
+            }
+        }  
     }
 
    //Made by Aayush
