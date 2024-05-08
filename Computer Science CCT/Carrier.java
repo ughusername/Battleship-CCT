@@ -6,6 +6,7 @@ public class Carrier extends Ships {
     private static final int size = 5;
     private boolean isSunk = false;
     public static final int identity = 1;
+    private static int lives = 5;
 
     //================= CONSTRUCTOR =================//
     public Carrier(int orientation, int startRow, int startColumn) {

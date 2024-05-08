@@ -6,6 +6,7 @@ public class Submarine extends Ships{
     private static final int size = 3;
     private boolean isSunk = false;
     public static final int identity = 5;
+    private static int lives = 2;
 
     //================= CONSTRUCTOR =================//
     public Submarine(int orientation, int startRow, int startColumn) {

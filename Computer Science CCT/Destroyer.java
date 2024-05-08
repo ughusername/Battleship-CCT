@@ -6,6 +6,7 @@ public class Destroyer extends Ships {
     private static final int size = 2;
     private boolean isSunk = false;
     public static final int identity = 4;
+    private static int lives = 2;
 
     //================= CONSTRUCTOR =================//
     public Destroyer(int orientation, int startRow, int startColumn) {

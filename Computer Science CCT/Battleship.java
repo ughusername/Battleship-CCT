@@ -6,6 +6,7 @@ public class Battleship extends Ships {
     private static final int size = 4;
     private boolean isSunk = false;
     private static final int identity = 2;
+    private static int lives = 4;
 
     //================= CONSTRUCTOR =================//
     public Battleship() {

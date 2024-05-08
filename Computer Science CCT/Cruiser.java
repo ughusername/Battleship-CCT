@@ -5,6 +5,7 @@ public class Cruiser extends Ships {
     private static final int size = 3;
     private boolean isSunk = false;
     public static final int identity = 3;
+    private static int lives = 3;
 
     //================= CONSTRUCTOR =================//
     public Cruiser(int orientation, int startRow, int startColumn) {

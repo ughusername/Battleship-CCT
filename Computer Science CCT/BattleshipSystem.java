@@ -1,11 +1,13 @@
 public class BattleshipSystem {
     public final static int HEIGHT = 10;
     public final static int WIDTH = 10;
+    private final static int MISS = 0;
     private final static int SUCCESFULL = 1;
     private final static int OUT_OF_BOUNDS = -1;
     private final static int INVALID_BOX = -2;
+    private final static int isHIT = -3;
 
-    public Ships[][] Shipgrid = new Ships[HEIGHT][WIDTH];
+    public Ships[][] ShipGrid = new Ships[HEIGHT][WIDTH];
     private int[][] AttackGrid = new int[HEIGHT][WIDTH];
     private Player[] allPlayers;
     private Player currPlayer;
@@ -15,18 +17,9 @@ public class BattleshipSystem {
 
     //========================= PUBLIC METHODS======================//
     //MADE BY AHMHED & AAYUSH
-    public int Attack(int col, int row) {
-        // Check if column or row is out of bounds
-        if(row > AttackGrid.length || col > AttackGrid[0].length) {
-            return OUT_OF_BOUNDS;
-        }
-        else if (
-                ) {
-        }         
-        return 0;
-    }
 
-    public int PowerAttack(int col, int row, int ShipType, int place ) {
+
+    public int pPowerAttack(int col, int row, int ShipType, int place ) {
         //if the ship is not out of bounds
         if (col >= 0 && col < HEIGHT && row >= 0 && row < 7) {
             //if the ship is a Carrier
@@ -87,34 +80,92 @@ public class BattleshipSystem {
     }
 
     public int InsertShip(int row, int col, Ships ShipType, int orientation) {
-    int size = ShipType.GetSize();
-    int gridRows = Shipgrid.length;
-    int gridCols = Shipgrid[0].length;
+        int size = ShipType.GetSize();
+        int gridRows = ShipGrid.length;
+        int gridCols = ShipGrid[0].length;
 
-    // Check if row and col are within bounds
-    if (row < 0 || row >= gridRows || col < 0 || col >= gridCols) {
-        return OUT_OF_BOUNDS; // Out of bounds
+        // Check if row and col are within bounds
+        if (row < 0 || row >= gridRows || col < 0 || col >= gridCols) {
+            return OUT_OF_BOUNDS; // Out of bounds
+        }
+
+        // Check if box is empty
+        if (ShipGrid[row][col] != null) {
+            return INVALID_BOX; // Box is full
+        }
+
+        // Check if ship placement exceeds grid boundaries
+        if ((orientation == 0 && col + size > gridCols) || (orientation == 1 && row + size > gridRows)) {
+            return OUT_OF_BOUNDS; // Out of bounds
+        }
+
+        // Place ship based on orientation
+        for (int i = 0; i < size; i++) {
+            if (orientation == 0) { //Vertical placement
+                ShipGrid[row][col + i] = ShipType;
+            } 
+            else { //Horizontal Placement
+                ShipGrid[row + i][col] = ShipType;
+            }
+        }
+
+        return SUCCESFULL; // Successful
     }
 
-    // Check if box is empty
-    if (Shipgrid[row][col] != null) {
-        return INVALID_BOX; // Box is full
-    }
-
-    // Check if ship placement exceeds grid boundaries
-    if ((orientation == 0 && col + size > gridCols) || (orientation == 1 && row + size > gridRows)) {
-        return OUT_OF_BOUNDS; // Out of bounds
-    }
-
-    // Place ship based on orientation
-    for (int i = 0; i < size; i++) {
-        if (orientation == 0) { //Vertical placement
-            Shipgrid[row][col + i] = ShipType;
-        } 
-        else { //Horizontal Placement
-            Shipgrid[row + i][col] = ShipType;
+    //MADE BY AAYUSH
+    public int Attack(int row, int col) {
+        if (row > AttackGrid.length || col > AttackGrid[0].length) {
+            return OUT_OF_BOUNDS;
+        }
+        else if (currPlayer.AttackGrid[row][col] == 1) {
+            return isHIT;
+        }
+        else {
+            if (currPlayer.GetName() == 0) {
+                // Check if the attack hits a ship on the opponent's grid
+                if (allPlayers[1].ShipGrid[row][col] != null) {
+                    currPlayer.AttackGrid[row][col] = 1; // Mark hit on opponent's grid
+                    allPlayers[1].ShipGrid[row][col].
+                    return SUCCESFULL; // Hit
+                } 
+                else {
+                    currPlayer.AttackGrid[row][col] = -1; // Mark miss on currPlayers grid
+                    return MISS; // Miss
+                }
+            }
+            else {
+                if (allPlayers[0].ShipGrid[row][col] != null) {
+                    currPlayer.AttackGrid[row][col] = 1; // Mark hit on currPlayers grid
+                    return SUCCESFULL; // Hit
+                } 
+                else {
+                    currPlayer.AttackGrid[row][col] = -1; // Mark miss on currPlayerss grid
+                    return MISS; // Miss
+                }
+            }
         }
     }
-    return SUCCESFULL; // Successful
-}
+
+    public int PowerAttack(int Ship, int row, int col, int place) {
+        if (row > AttackGrid.length || col > AttackGrid[0].length) {
+            return OUT_OF_BOUNDS;
+        }
+        else
+        
+        
+    }
+
+   //Made by Aayush
+    /* Set who will be the current player
+   * @param index - The value that represents the player. This
+   *                is based on the array position of where the 
+   *                player is stored. */
+    public void SetCurrPlayer(int index) {
+        if (index == 0) {
+          this.currPlayer = allPlayers[0];
+        }
+        else {
+          this.currPlayer = allPlayers[1];
+        }
+      }  
 }
