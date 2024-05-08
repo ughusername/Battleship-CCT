@@ -3,9 +3,9 @@ public class Carrier extends Ships {
     private int orientation;
     private int startColumn;
     private int startRow;
-    private int size = 5;
+    private static final int size = 5;
     private boolean isSunk = false;
-    public int identity = 1;
+    public static final int identity = 1;
 
     //================= CONSTRUCTOR =================//
     public Carrier(int orientation, int startRow, int startColumn) {

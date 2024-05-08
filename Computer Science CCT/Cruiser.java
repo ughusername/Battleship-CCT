@@ -2,9 +2,9 @@ public class Cruiser extends Ships {
     private int orientation;
     private int startColumn;
     private int startRow;
-    private int size = 3;
+    private static final int size = 3;
     private boolean isSunk = false;
-    public int identity = 3;
+    public static final int identity = 3;
 
     //================= CONSTRUCTOR =================//
     public Cruiser(int orientation, int startRow, int startColumn) {

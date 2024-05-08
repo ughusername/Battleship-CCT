@@ -3,9 +3,9 @@ public class Submarine extends Ships{
     private int orientation;
     private int startColumn;
     private int startRow;    
-    private int size = 3;
+    private static final int size = 3;
     private boolean isSunk = false;
-    public int identity = 5;
+    public static final int identity = 5;
 
     //================= CONSTRUCTOR =================//
     public Submarine(int orientation, int startRow, int startColumn) {

@@ -3,9 +3,9 @@ public class Battleship extends Ships {
     private int orientation;
     private int startColumn;
     private int startRow;
-    private int size = 4;
+    private static final int size = 4;
     private boolean isSunk = false;
-    public int identity = 2;
+    private static final int identity = 2;
 
     //================= CONSTRUCTOR =================//
     public Battleship() {

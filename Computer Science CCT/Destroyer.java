@@ -3,9 +3,9 @@ public class Destroyer extends Ships {
     private int orientation;
     private int startColumn;
     private int startRow;
-    private int size = 2;
+    private static final int size = 2;
     private boolean isSunk = false;
-    public int identity = 4;
+    public static final int identity = 4;
 
     //================= CONSTRUCTOR =================//
     public Destroyer(int orientation, int startRow, int startColumn) {
