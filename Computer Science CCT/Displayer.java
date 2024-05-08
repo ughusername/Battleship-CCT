@@ -54,7 +54,7 @@ public class Displayer {
         for (int row = 0; row < rows; row++) {
             System.out.print(row + 1 + "  |");
             for (int col = 0; col < cols; col++) {
-                if (grid[row][col] == 1 /*&& grid[row][col].IsHit()*/) { //1 is hit
+                if (grid[row][col] == 1 ) {                              //1 is hit
                     System.out.print("  X  |");                         
                 } else if (grid[row][col] == 0){                         //O is miss
                     System.out.print("  O  |");

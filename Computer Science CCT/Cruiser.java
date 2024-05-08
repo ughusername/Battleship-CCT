@@ -1,11 +1,11 @@
 public class Cruiser extends Ships {
+    private final static int power = 2;
     private int orientation;
     private int startColumn;
     private int startRow;
-    private static final int size = 3;
+    private int size = 3;
     private boolean isSunk = false;
-    public static final int identity = 3;
-    private static int lives = 3;
+    public int identity = 3;
 
     //================= CONSTRUCTOR =================//
     public Cruiser(int orientation, int startRow, int startColumn) {
@@ -56,6 +56,6 @@ public class Cruiser extends Ships {
     }
 
     public int GetPower() {
-        return 9; //dummy because it needs to be overriden 
+        return power; 
     }
 }

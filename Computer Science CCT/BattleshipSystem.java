@@ -8,6 +8,7 @@ public class BattleshipSystem {
     private final static int OUT_OF_BOUNDS = -1;
     private final static int INVALID_BOX = -2;
     private final static int isHIT = -3;
+    private final static int INVALID_SHIP = -4;
 
     public Ships[][] ShipGrid = new Ships[HEIGHT][WIDTH];
     private int[][] AttackGrid = new int[HEIGHT][WIDTH];
@@ -33,70 +34,47 @@ public class BattleshipSystem {
              CarrierPowerAttack(opponent); // Recursive call to try again
          }
     }
+
+    private void BattleshipPowerAttack(Player opponent, int col) {
+        //Will attack an entire column
+        for (int i = 0; i < 10; i++ ) {
+            if (opponent.ShipGrid[i][col] != null) {
+                currPlayer.AttackGrid[i][col] = 1;
+            }
+            else {
+                currPlayer.AttackGrid[i][col] = 0;
+            }
+        }
+    }
+
+    private void DestroyerPowerAttack(Player opponent, int row, int col) {
+        for (int i = row - 1; i <= row + 1; i++) {
+            for (int j = col - 1; j <= col + 1; j++) {
+                if (opponent.ShipGrid[i][j] != null) {
+                    currPlayer.AttackGrid[i][j] = 1;
+                }
+                else {
+                    currPlayer.AttackGrid[i][j] = 0;
+                }  
+            }
+        }
+    }
+
+    private void SubmarinePowerAttack(Player opponent, int row) {
+        //Will attack an entire column
+        for (int i = 0; i < 10; i++ ) {
+            if (opponent.ShipGrid[row][i] != null) {
+                currPlayer.AttackGrid[row][i] = 1;
+            }
+            else {
+                currPlayer.AttackGrid[row][i] = 0;
+            }
+        }
+    }
     //========================= PUBLIC METHODS======================//
     //MADE BY AHMHED & AAYUSH
 
-
-   /*  public int pPowerAttack(int col, int row, int ShipType, int place ) {
-        //if the ship is not out of bounds
-        if (col >= 0 && col < HEIGHT && row >= 0 && row < 7) {
-            //if the ship is a Carrier
-            if (Ship == 1) {
-            // Check if the cell is already attacked
-            if (opponentBoard[row][col] == 0) {// Check if the cell is already attacked
-                // Mark the cell as attacked
-                opponentBoard[row][col] = 1;
-                // Check the 3x3 grid around the selected cell
-                for (int i = -1; i <= 1; i++) {
-                    for (int j = -1; j <= 1; j++) {
-                        // Check if the neighboring cell is within the game board bounds
-                        if (col + i >= 0 && col + i < 7 && row + j >= 0 && row + j < 7) {
-                            // Check if the neighboring cell is already attacked
-                            if (opponentBoard[row + j][col + i] == 0) {
-                                // Mark the neighboring cell as attacked
-                                opponentBoard[row + j][col + i] = 1;
-                            }
-                        }
-                    }
-                }
-                // Return 0 if successful
-                return 0;
-            } 
-            else {
-                // Return -1 if the cell is already attacked
-                return -1;
-            }
-        } else {
-            // Return -1 if row and col are out of bounds
-            return -1;
-        }
-    } 
-    
-            {//if the ship is a Battleship
-            if (Ship == 2) {
-    
-            }
-            //if the ship is a Cruiser
-            if (Ship == 3) {
-            }
-            //if the ship is a Destroyer
-            if (Ship == 4) {
-            }
-            //if the ship is a Submarine
-            if (Ship == 5) {
-    
-            
-            if (opponentBoard[row][col] == 0) {
-                // Mark the cell as attacked
-                opponentBoard[row][col] = 1;
-                // Return 0 if successful
-                return 0;
-            }
-            }
-            }
-            return 0; // DEFAULT VALUE NEEDS TO BE CHANGED
-    } */
-
+    //MADE BY AAYUSH
     public int InsertShip(int row, int col, Ships ShipType, int orientation) {
         int size = ShipType.GetSize();
         int gridRows = ShipGrid.length;
@@ -164,7 +142,7 @@ public class BattleshipSystem {
             }
         }
     }
-
+    //MADE BY AAYUSH
     public int PowerAttack(int Ship, int row, int col, int place) {
         if (row > AttackGrid.length || col > AttackGrid[0].length) {
             return OUT_OF_BOUNDS;
@@ -180,10 +158,43 @@ public class BattleshipSystem {
                 return SUCCESFULL;
             }
             if (Ship == 2) { //Battleship
-                
+                if (currPlayer.GetName() == 0) {
+                    BattleshipPowerAttack(allPlayers[0], col); 
+                }
+                else {
+                    BattleshipPowerAttack(allPlayers[1], col);
+                }
+                return SUCCESFULL;
             }
-        }  
-    }
+            if (Ship == 4) {
+                if (row + 2 > ShipGrid.length || row - 2> ShipGrid.length
+                    || col + 2 > ShipGrid[0].length || col - 2 > ShipGrid[0].length) {
+                    return OUT_OF_BOUNDS;
+                }
+                else {
+                    if (currPlayer.GetName() == 0) {
+                        DestroyerPowerAttack(allPlayers[1], row, col); 
+                    }
+                    else {
+                        DestroyerPowerAttack(allPlayers[0], row, col); 
+                    }
+                    return SUCCESFULL;
+                }
+            }
+            if (Ship == 5) {
+                if (currPlayer.GetName() == 0) {
+                   SubmarinePowerAttack(allPlayers[0], row);
+                }
+                else {
+                    SubmarinePowerAttack(allPlayers[1], col);
+                }
+                return SUCCESFULL;
+            }
+            else {
+                return INVALID_SHIP;
+            }
+            }
+        }
 
    //Made by Aayush
     /* Set who will be the current player

@@ -6,7 +6,7 @@ public abstract class Ships {
     public static final int SUBMARINE = 5;
     private int startRow;
     private int startColumn;
-    private int Orientation;
+    private int orientation;
     private int shipType;
     private int numofShips = 5;
 
@@ -54,4 +54,5 @@ public abstract class Ships {
     public abstract int GetSize();
     
     public abstract int GetIdentity();
+    
 }   
