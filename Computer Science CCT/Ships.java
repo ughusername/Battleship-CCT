@@ -7,34 +7,16 @@ public abstract class Ships {
     private int startRow;
     private int startColumn;
     private int Orientation;
-    private boolean isSunk;
     private int shipType;
-    private int numofShips = 10
-
+    private int numofShips = 5;
 
 
     //==================== CONSTRUCTORS ====================//
     public Ships() {
-        this.isSunk = false;
-        this.numofShips = numofShips;
-
     }
 
-    public boolean IsHit(int x, int y) {
-        if (lives == 0) {
-            isSunk = true;
-            System.out.println("You sunk the " + getShipName(shipType)); // Using a method to get ship name
-            numofShips--;            
-            return false;
-        }
-         else {
-            System.out.println("You hit a ship at coordinates (" + x + ", " + y + ")"); // Using a method to get ship name
-            lives--;
-            return true;
-        }
-    }
 
-    public String getShipName(int shipType) {
+    public String GetShipName(int shipType) {
         switch (shipType) {
             case CARRIER:
                 return "Carrier";
@@ -50,39 +32,26 @@ public abstract class Ships {
                 return "Unknown";
         }
     }
-
-    public boolean IsSunk() {
-        return isSunk;
-    }
     
     public int GetRemaningShips() {
     return numofShips;
     }
 
-    public int GetStartRow() {
-        return startRow;
-    }
+    public abstract int GetStartRow();
 
-    public void SetStartRow(int StartRow) {
-        this.startRow = StartRow;
-    }
+    public abstract void SetStartRow(int StartRow);
 
-    public int GetStartColumn() {
-        return startColumn;
-    }
+    public abstract int GetStartColumn(); 
 
-    public void SetStartColumn(int startColumn) {
-        this.startColumn = startColumn;
-    }
+    public abstract void SetStartColumn(int startColumn);
 
-    public int GetOrientation() {
-        return orientation;
-    }
+    public abstract int GetOrientation();
 
-    public void SetOrientation(String orientation) {
-        this.Orientation = orientation;
-    }
+    public abstract void SetOrientation(int orientation);
 
     public abstract int GetPower();
-
+    
+    public abstract int GetSize();
+    
+    public abstract int GetIdentity();
 }   

@@ -3,6 +3,9 @@ public class Carrier extends Ships {
     private int orientation;
     private int startColumn;
     private int startRow;
+    private int size = 5;
+    private boolean isSunk = false;
+    public int identity = 1;
 
     //================= CONSTRUCTOR =================//
     public Carrier(int orientation, int startRow, int startColumn) {
@@ -11,24 +14,52 @@ public class Carrier extends Ships {
         this.startRow = startRow;
     }
     //================ PUBLIC METHODS ===============//
-    /* Get Orientation of Ship
-     * @return - value of orientation */
-    public int GetOrientation() {
-        return orientation;
+    @Override
+    public void SetStartRow(int StartRow) {
+        this.startRow = StartRow;
     }
-    /* Get Start Column of Ship
-     * @return - Column ship is at */
-    public int GetStartColumn() {
-        return startColumn;
-    }
+    
     /* Get Start Row of Ship
      * @return - Row ship is at */
     public int GetStartRow() {
         return startRow;
     }
+
+
+    @Override
+    public void SetStartColumn(int startColumn) {
+        this.startColumn = startColumn;
+    }
+
+    /* Get Start Column of Ship
+     * @return - Column ship is at */
+    public int GetStartColumn() {
+        return startColumn;
+    }
+
+
+    @Override
+    public void SetOrientation(int orientation) {
+      this.orientation =orientation;
+    }
+
+    /* Get Orientation of Ship
+     * @return - value of orientation */
+    public int GetOrientation() {
+        return orientation;
+    }
+
     @Override
     public int GetPower() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'GetPower'");
+        return Power;
+    }
+
+    /* Gets the size of the ship */
+    public int GetSize() {
+        return size;
+    }
+    
+    public int GetIdentity() {
+        return identity;
     }
 }

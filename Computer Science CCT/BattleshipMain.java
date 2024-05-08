@@ -1,7 +1,21 @@
 public class BattleshipMain {
     public static void main(String[] args) {
-        System.out.println("CCT");
-        System.out.println("Helloworld");
-        System.out.println("umm... what the sigma!!! ");
+        
+        BattleshipSystem bs = new BattleshipSystem();
+        Ships[][] Shipsgrid = new Ships[BattleshipSystem.HEIGHT][BattleshipSystem.WIDTH];
+        int[][] AttackGrid = new int[BattleshipSystem.HEIGHT][BattleshipSystem.WIDTH];
+        AttackGrid = new int[][] {
+            {-1, -1, -1, -1, -1, -1, -1},
+            {-1, -1, -1, -1, -1, -1, -1},
+            {-1, -1, -1, -1, -1, -1, -1},
+            {-1, -1, -1, -1, -1, -1, -1},
+            {-1, -1, -1, -1, -1, -1, -1},
+            {-1, -1, -1, -1, -1, -1, -1},
+            {-1, -1, -1, -1, -1, -1, -1}
+        };
+        Displayer.DisplayAttackGrid(AttackGrid);
+        //if shiptype == 1 {}
+        Ships shipType = new Carrier(0, 0, 0);
+        bs.InsertShip(1,1, shipType, 0);
     }    
 }
