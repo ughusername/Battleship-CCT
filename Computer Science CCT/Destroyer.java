@@ -57,4 +57,18 @@ public class Destroyer extends Ships {
     public int GetIdentity() {
         return identity;
     }
+    
+    //MADE BY AAYUSH
+    public void PowerAttack(int row, int col, Player opponent, Player currPlayer){
+        for (int i = row - 1; i <= row + 1; i++) {
+            for (int j = col - 1; j <= col + 1; j++) {
+                if (opponent.ShipGrid[i][j] != null) {
+                    currPlayer.AttackGrid[i][j] = 1;
+                }
+                else {
+                    currPlayer.AttackGrid[i][j] = 0;
+                }  
+            }
+        }
+    }
 }

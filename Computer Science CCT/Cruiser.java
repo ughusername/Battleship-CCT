@@ -58,4 +58,9 @@ public class Cruiser extends Ships {
     public int GetPower() {
         return power; 
     }
+    
+    //MADE BY AHMED
+    public void PowerAttack(int row, int col, Player opponent, Player currPlayer){
+        
+    }
 }

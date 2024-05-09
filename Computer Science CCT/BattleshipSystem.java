@@ -17,48 +17,8 @@ public class BattleshipSystem {
     public Object bs;
 
     //========================= Private Method======================//
-    private void CarrierPowerAttack(Player opponent) {
-         // Generate random row and column indices
-         Random rand = new Random();
-         int row = rand.nextInt(10); // Assuming a 10x10 grid
-         int col = rand.nextInt(10);
-         // Check if there's a ship at the randomly chosen location
-         Ships ship = opponent.ShipGrid[row][col];
-         if (ship != null) {
-             // Ship exists at this location, mark it as hit
-             opponent.ShipGrid[row][col] = null; // Mark it as hit (assuming 2 represents a hit)
-             currPlayer.AttackGrid[row][col] = 1;
-         } 
-         else {
-             // No ship at this location, try again
-             CarrierPowerAttack(opponent); // Recursive call to try again
-         }
-    }
+    
 
-    private void BattleshipPowerAttack(Player opponent, int col) {
-        //Will attack an entire column
-        for (int i = 0; i < 10; i++ ) {
-            if (opponent.ShipGrid[i][col] != null) {
-                currPlayer.AttackGrid[i][col] = 1;
-            }
-            else {
-                currPlayer.AttackGrid[i][col] = 0;
-            }
-        }
-    }
-
-    private void DestroyerPowerAttack(Player opponent, int row, int col) {
-        for (int i = row - 1; i <= row + 1; i++) {
-            for (int j = col - 1; j <= col + 1; j++) {
-                if (opponent.ShipGrid[i][j] != null) {
-                    currPlayer.AttackGrid[i][j] = 1;
-                }
-                else {
-                    currPlayer.AttackGrid[i][j] = 0;
-                }  
-            }
-        }
-    }
 
     private void SubmarinePowerAttack(Player opponent, int row) {
         //Will attack an entire column
@@ -143,7 +103,7 @@ public class BattleshipSystem {
         }
     }
     //MADE BY AAYUSH
-    public int PowerAttack(int Ship, int row, int col, int place) {
+    public int PowerAttack(int Ship, int row, int col) {
         if (row > AttackGrid.length || col > AttackGrid[0].length) {
             return OUT_OF_BOUNDS;
         }
@@ -196,6 +156,10 @@ public class BattleshipSystem {
             }
         }
 
+    public int PerformPowerAttack(int Ship) {
+        return currPlayer.GetShipType(Ship).PowerAttack(0,0);
+    }
+
    //Made by Aayush
     /* Set who will be the current player
    * @param index - The value that represents the player. This
@@ -209,4 +173,5 @@ public class BattleshipSystem {
           this.currPlayer = allPlayers[1];
         }
       }  
+      
 }

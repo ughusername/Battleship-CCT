@@ -56,4 +56,17 @@ public class Submarine extends Ships{
     public int GetIdentity() {
         return identity;
     }
+    
+    //MADE BY AAYUSH
+    public void PowerAttack(int row, int col, Player opponent, Player currPlayer){
+                //Will attack an entire column
+                for (int i = 0; i < 10; i++ ) {
+                    if (opponent.ShipGrid[row][i] != null) {
+                        currPlayer.AttackGrid[row][i] = 1;
+                    }
+                    else {
+                        currPlayer.AttackGrid[row][i] = 0;
+                    }
+                }
+    }
 }

@@ -53,6 +53,8 @@ public abstract class Ships {
     
     public abstract int GetSize();
     
-    public abstract int GetIdentity();
+    public abstract int GetIdentity(); 
     
+    //returns pos where ship was shot
+    public abstract void PowerAttack( int row, int col, Player opponent, Player curPlayer);
 }   

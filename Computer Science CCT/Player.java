@@ -1,7 +1,7 @@
 public class Player {
-    private int name;            //name of the Player
-    private int lives;              //lives(ships) left of the player
-    private Ships[] shiptypes;        //Ship types of the player
+    private int name;                //name of the Player
+    private int lives;               //lives(ships) left of the player
+    private Ships[] ShipTypes;       //Ship types of the player
     public Ships[][] ShipGrid;
     public int[][] AttackGrid; 
 
@@ -28,6 +28,14 @@ public class Player {
     */
     public void LifeDecrease() {
 
+    }
+    
+    public Ships GetShipType(int index) {
+        return ShipTypes[index];
+    }
+
+    public Ships GetShipTypes() {
+        return 
     }
 
 }

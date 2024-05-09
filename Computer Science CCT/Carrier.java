@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Carrier extends Ships {
     private static final int Power = 0;
     private int orientation;
@@ -63,4 +65,23 @@ public class Carrier extends Ships {
     public int GetIdentity() {
         return identity;
     }
+
+    //MADE BY AAYUSH
+    public void PowerAttack(int row, int col, Player opponent, Player currPlayer) {
+         // Generate random row and column indices
+         Random rand = new Random();
+         row = rand.nextInt(10); // Assuming a 10x10 grid
+         col = rand.nextInt(10);
+         // Check if there's a ship at the randomly chosen location
+         Ships ship = opponent.ShipGrid[row][col];
+         if (ship != null) {
+             // Ship exists at this location, mark it as hit
+             opponent.ShipGrid[row][col] = null; // Mark it as hit (assuming 2 represents a hit)
+             currPlayer.AttackGrid[row][col] = 1;
+         } 
+         else {
+             // No ship at this location, try again
+             PowerAttack(row, col, opponent, currPlayer); // Recursive call to try again
+         }
+}
 }

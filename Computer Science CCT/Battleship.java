@@ -59,4 +59,17 @@ public class Battleship extends Ships {
     public int GetIdentity() {
         return identity;
     }
+
+    //MADE BY AAYUSH
+    public void PowerAttack(int row, int col, Player opponent, Player currPlayer) {
+        //Will attack an entire column
+        for (int i = 0; i < 10; i++ ) {
+            if (opponent.ShipGrid[i][col] != null) {
+                currPlayer.AttackGrid[i][col] = 1;
+            }
+            else {
+                currPlayer.AttackGrid[i][col] = 0;
+            }
+        }
+    }
 }
