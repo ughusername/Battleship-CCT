@@ -34,8 +34,8 @@ public class Player {
         return ShipTypes[index];
     }
 
-    public Ships GetShipTypes() {
-        return 
+    public Ships[] GetShipTypes() {
+        return ShipTypes;
     }
 
 }

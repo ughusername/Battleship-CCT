@@ -6,7 +6,7 @@ public class Submarine extends Ships{
     private static final int size = 3;
     private boolean isSunk = false;
     public static final int identity = 5;
-    private static int lives = 2;
+    private int lives = 2;
 
     //================= CONSTRUCTOR =================//
     public Submarine(int orientation, int startRow, int startColumn) {
@@ -15,6 +15,10 @@ public class Submarine extends Ships{
         this.startRow = startRow;
     }
     //================ PUBLIC METHODS ===============//
+    
+       //================ PUBLIC METHODS ===============//
+    /*Set the start row of the ship
+     * @param Startrow - the starting row of the ship */
     public void SetStartRow(int StartRow) {
         this.startRow = StartRow;
     }
@@ -25,15 +29,21 @@ public class Submarine extends Ships{
         return startRow;
     }
 
+
+    /*Set the start Column of the ship
+     * @param startColumn - the starting column of the ship */
     public void SetStartColumn(int startColumn) {
         this.startColumn = startColumn;
     }
+    
     /* Get Start Column of Ship
      * @return - Column ship is at */
     public int GetStartColumn() {
         return startColumn;
     }
 
+    /* Set the orientation  of the ship
+     * @param orientation - 0 is horizontal, 1 is vertical */
     public void SetOrientation(int orientation) {
         this.orientation = orientation;
     }
@@ -44,11 +54,16 @@ public class Submarine extends Ships{
         return orientation;
     }
 
+    /* Get the Power of the Ship
+     * @return - the power (int value)
+     */
     public int GetPower() {
         return Power;
     }
     
-    /* Gets the size of the ship */
+    /* Gets the size of the ship 
+     * @return - the int size of ship which is based on private variable in subclass
+    */
     public int GetSize() {
         return size;
     }
@@ -57,12 +72,26 @@ public class Submarine extends Ships{
         return identity;
     }
     
+    /* Set the number of lives of the ship as it decreases by one 
+       @param live - the lives of the ship */
+    public void SetLives(int live) {
+        this.lives -= live;
+    }
+    
+    /* Gets the lives of the ship
+     * @return - the number of remaining lives that the ship has  
+     */
+    public int GetLives() {
+        return lives;
+    }
+    
     //MADE BY AAYUSH
+    //submarine will attack an entire column
     public void PowerAttack(int row, int col, Player opponent, Player currPlayer){
-                //Will attack an entire column
                 for (int i = 0; i < 10; i++ ) {
                     if (opponent.ShipGrid[row][i] != null) {
                         currPlayer.AttackGrid[row][i] = 1;
+                        opponent.ShipGrid[row][i].SetLives(1);
                     }
                     else {
                         currPlayer.AttackGrid[row][i] = 0;

@@ -55,6 +55,15 @@ public abstract class Ships {
     
     public abstract int GetIdentity(); 
     
-    //returns pos where ship was shot
+    public abstract void SetLives(int live);
+
+    public abstract int GetLives();
+
+    //MADE BY AAYUSH
+    /* Attacks with a special move and each ship has a special attack
+     * @param row - the row which the attack will be placed
+     * @param col - the column which the attack will be placed
+     * @param opponent - the opponent player which stores the shipgrids
+     * @param currPlayer - the currPlayer which stores the attackgrid  */
     public abstract void PowerAttack( int row, int col, Player opponent, Player curPlayer);
 }   
