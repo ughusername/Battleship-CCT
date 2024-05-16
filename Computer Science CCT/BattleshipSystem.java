@@ -41,7 +41,7 @@ public class BattleshipSystem {
     int gridCols = ShipGrid[0].length;
     
     // Check if row and col are within bounds
-    if (ShipType.isPlaced()){
+    if (ShipType.GetIsPlaced()){
       return IS_PLACED;
     }
     

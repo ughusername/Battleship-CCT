@@ -1,87 +1,70 @@
 //Made By Aayush
 public class Battleship extends Ships {
-    private static final int Power = 1;
-    private static final int size = 4;
-    private static final int identity = 2;
-    private int lives = 4;
-    
-    //================= CONSTRUCTOR =================//
-    public Battleship(int startRow, int startColumn, int orientation, boolean IsSunk, boolean IsPlace) {
-      super(startRow, startColumn, orientation, IsSunk, IsPlace);
-      
-    }
-    
-    //================ PUBLIC METHODS ===============//
-    /*Set the start row of the ship
-     * @param Startrow - the starting row of the ship */
-    public void SetStartRow(int StartRow) {
-      this.startRow = StartRow;
-    }
-    
-    /* Get Start Row of Ship
-     * @return - Row ship is at */
-    public int GetStartRow() {
-      return startRow;
-    }
-    
-    
-    /*Set the start Column of the ship
-     * @param startColumn - the starting column of the ship */
-    public void SetStartColumn(int startColumn) {
-      this.startColumn = startColumn;
-    }
-    
-    /* Get Start Column of Ship
-     * @return - Column ship is at */
-    public int GetStartColumn() {
-      return startColumn;
-    }
-    
-    /* Set the orientation  of the ship
-     * @param orientation - 0 is horizontal, 1 is vertical */
-    public void SetOrientation(int orientation) {
-      this.orientation = orientation;
-    }
-    
-    /* Get Orientation of Ship
-     * @return - value of orientation */
-    public int GetOrientation() {
-      return orientation;
-    }
-    
-    /* Get the Power of the Ship
-     * @return - the power (int value)
-     */
-    public int GetPower() {
-      return Power;
-    }
-    
-    /* Gets the size of the ship 
-     * @return - the int size of ship which is based on private variable in subclass
-     */
-    public int GetSize() {
-      return size;
-    }
-
-    /* Get the identity of the ship
+  private final int Power ;
+  private final int size;
+  public final int identity = 1; 
+  private int lives;
+  private boolean IsPlaced;
+  private boolean IsSunk;
+  
+  //================= CONSTRUCTOR =================//
+  public Battleship(int startRow, int startColumn, int orientation, boolean isSunk, boolean isPlace) {
+    super(startRow, startColumn, orientation, isSunk, isPlace);
+    this.Power = 1;
+    this.size =4;
+    this.lives = 4;
+  }
+  //================ PUBLIC METHODS ===============//
+  
+  /* Get the Power of the Ship
+   * @return - the power (int value)
+   */
+  public int GetPower() {
+    return Power;
+  }
+  
+  /* Gets the size of the ship 
+   * @return - the int size of ship which is based on private variable in subclass
+   */
+  public int GetSize() {
+    return size;
+  }
+  
+  /* Get the identity of the ship
      * @return - the int identity of the ship which is based on private variable in subclass
      */
-    public int GetIdentity() {
-      return identity;
-    }
-    
-    /* Set the number of lives of the ship as it decreases by one 
-     @param live - the lives of the ship */
-     public void SetLives(int live) {
-       this.lives -= live;
-     }
-     
-     /* Gets the lives of the ship
-      * @return - the number of remaining lives that the ship has  
-      */
-     public int GetLives() {
-       return lives;
-     }
+  public int GetIdentity() {
+    return identity;
+  }
+  
+  /* Set the number of lives of the ship as it decreases by one 
+   @param live - the lives of the ship */
+   public void SetLives(int live) {
+     this.lives -= live;
+   }
+   
+   /* Gets the lives of the ship
+    * @return - the number of remaining lives that the ship has  
+    */
+   public int GetLives() {
+     return lives;
+   }
+
+   public void SetIsPlaced(boolean isPlaced){
+    this.IsPlaced = isPlaced;
+   }
+
+   public boolean GetIsPlaced(){
+    return IsPlaced;
+   }
+
+   public void SetIsSunk(boolean IsSunk){
+    this.IsSunk = IsSunk;
+   }
+
+   public boolean GetIsSunk(){
+    return IsSunk;
+   }
      
      //MADE BY AAYUSH
      // Battleship will attack an entire column

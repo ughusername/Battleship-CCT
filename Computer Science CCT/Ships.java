@@ -43,18 +43,44 @@ public abstract class Ships {
     public int GetRemaningShips() {
       return numofShips;
     }
+
     
-    public abstract int GetStartRow();
-    
-    public abstract void SetStartRow(int StartRow);
-    
-    public abstract int GetStartColumn(); 
-    
-    public abstract void SetStartColumn(int startColumn);
-    
-    public abstract int GetOrientation();
-    
-    public abstract void SetOrientation(int orientation);
+  /*Set the start row of the ship
+   * @param Startrow - the starting row of the ship */
+  public void SetStartRow(int StartRow) {
+    this.startRow = StartRow;
+  }
+  
+  /* Get Start Row of Ship
+   * @return - Row ship is at */
+  public int GetStartRow() {
+    return startRow;
+  }
+  
+  
+  /*Set the start Column of the ship
+   * @param startColumn - the starting column of the ship */
+  public void SetStartColumn(int startColumn) {
+    this.startColumn = startColumn;
+  }
+  
+  /* Get Start Column of Ship
+   * @return - Column ship is at */
+  public int GetStartColumn() {
+    return startColumn;
+  }
+  
+  /* Set the orientation  of the ship
+   * @param orientation - 0 is horizontal, 1 is vertical */
+  public void SetOrientation(int orientation) {
+    this.orientation = orientation;
+  }
+  
+  /* Get Orientation of Ship
+   * @return - value of orientation */
+  public int GetOrientation() {
+    return orientation;
+  }
     
     public abstract int GetPower();
     
@@ -65,6 +91,14 @@ public abstract class Ships {
     public abstract void SetLives(int live);
     
     public abstract int GetLives();
+
+    public abstract void SetIsPlaced(boolean IsPlaced);
+
+    public abstract boolean GetIsPlaced();
+
+    public abstract void SetIsSunk(boolean IsSunk);
+
+    public abstract boolean GetIsSunk();
     
     //MADE BY AAYUSH
     /* Attacks with a special move and each ship has a special attack

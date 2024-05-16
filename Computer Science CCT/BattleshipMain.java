@@ -31,8 +31,8 @@ public class BattleshipMain {
       int col = input.nextInt();
       System.out.println("If you would like to place it vertical, Enter 1. otherwise Enter 0 for horizontal");
       int orientation = input.nextInt();
-      Ships shipType = new Battleship(1, 2 ,3, 4, 5, false, 2);
-      bs.InsertShip(row,col, shipType, orientation);
+      //Ships shipType = new Battleship(1, 2 ,3, 4, 5, false, 2);
+      //bs.InsertShip(row,col, shipType, orientation);
     }
     else if (ShipChoice == 2) {
       System.out.println("Which row would you like to place the Cruiser");
@@ -41,8 +41,8 @@ public class BattleshipMain {
       int col = input.nextInt();
       System.out.println("If you would like to place it vertical, Enter 1. otherwise Enter 0 for horizontal");
       int orientation = input.nextInt();
-      Ships shipType = new Cruiser(row,col,orientation);
-      bs.InsertShip(row,col, shipType, orientation);
+      //Ships shipType = new Cruiser(row,col,orientation);
+      //bs.InsertShip(row,col, shipType, orientation);
     }
     else if (ShipChoice == 3) {
       System.out.println("Which row would you like to place the Carrier");
@@ -51,8 +51,8 @@ public class BattleshipMain {
       int col = input.nextInt();
       System.out.println("If you would like to place it vertical, Enter 1. otherwise Enter 0 for horizontal");
       int orientation = input.nextInt();
-      Ships shipType = new Carrier(orientation, row, col);
-      bs.InsertShip(row,col, shipType, orientation);
+      //Ships shipType = new Carrier(orientation, row, col);
+      //bs.InsertShip(row,col, shipType, orientation);
     }
     else if (ShipChoice == 4) {
       System.out.println("Which row would you like to place the Destroyer");
@@ -61,8 +61,8 @@ public class BattleshipMain {
       int col = input.nextInt();
       System.out.println("If you would like to place it vertical, Enter 1. Otherwise Enter 0 for horizontal");
       int orientation = input.nextInt();
-      Ships shipType = new Destroyer(orientation, row, col);
-      bs.InsertShip(row,col, shipType, orientation);
+      //Ships shipType = new Destroyer(orientation, row, col);
+      //bs.InsertShip(row,col, shipType, orientation);
     }
     else {
       System.out.println("Which row would you like to place the Submarine");
@@ -71,9 +71,8 @@ public class BattleshipMain {
       int col = input.nextInt();
       System.out.println("If you would like to place it vertical, Enter 1. Otherwise Enter 0 for horizontal");
       int orientation = input.nextInt();
-      Ships shipType = new Submarine(orientation, row, col);
-      int check = bs.InsertShip(row,col, shipType, orientation);
-      System.out.println(check);
+      //Ships shipType = new Submarine(orientation, row, col);
+      //int check = bs.InsertShip(row,col, shipType, orientation);
     }
     
     /*int[][] AttackGrid = new int[BattleshipSystem.HEIGHT][BattleshipSystem.WIDTH];

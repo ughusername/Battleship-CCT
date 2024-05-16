@@ -3,14 +3,11 @@ import java.util.Random;
 
 public class Carrier extends Ships {
   private final int Power ;
-  private int orientation;
-  private int startColumn;
-  private int startRow;
   private final int size;
-  private boolean isSunk;
-  public static final int identity = 1; 
+  public final int identity = 1; 
   private int lives;
-  private boolean isPlace;
+  private boolean IsPlaced;
+  private boolean IsSunk;
   
   //================= CONSTRUCTOR =================//
   public Carrier(int startRow, int startColumn, int orientation, boolean isSunk, boolean isPlace) {
@@ -20,42 +17,6 @@ public class Carrier extends Ships {
     this.lives = 5;
   }
   //================ PUBLIC METHODS ===============//
-  /*Set the start row of the ship
-   * @param Startrow - the starting row of the ship */
-  public void SetStartRow(int StartRow) {
-    this.startRow = StartRow;
-  }
-  
-  /* Get Start Row of Ship
-   * @return - Row ship is at */
-  public int GetStartRow() {
-    return startRow;
-  }
-  
-  
-  /*Set the start Column of the ship
-   * @param startColumn - the starting column of the ship */
-  public void SetStartColumn(int startColumn) {
-    this.startColumn = startColumn;
-  }
-  
-  /* Get Start Column of Ship
-   * @return - Column ship is at */
-  public int GetStartColumn() {
-    return startColumn;
-  }
-  
-  /* Set the orientation  of the ship
-   * @param orientation - 0 is horizontal, 1 is vertical */
-  public void SetOrientation(int orientation) {
-    this.orientation = orientation;
-  }
-  
-  /* Get Orientation of Ship
-   * @return - value of orientation */
-  public int GetOrientation() {
-    return orientation;
-  }
   
   /* Get the Power of the Ship
    * @return - the power (int value)
@@ -90,6 +51,22 @@ public class Carrier extends Ships {
    public int GetLives() {
      return lives;
    }
+
+   public void SetIsPlaced(boolean isPlaced){
+    this.IsPlaced = isPlaced;
+   }
+
+   public boolean GetIsPlaced(){
+    return IsPlaced;
+   }
+
+   public void SetIsSunk(boolean IsSunk){
+    this.IsSunk = IsSunk;
+   }
+
+   public boolean GetIsSunk(){
+    return IsSunk;
+   }
    
    //MADE BY AAYUSH
    //Carrier has power of guaranteed attack on a ship, using recursive method
@@ -111,4 +88,6 @@ public class Carrier extends Ships {
        PowerAttack(row, col, opponent, currPlayer); // Recursive call to try again
      }
    }
+
+
 }
