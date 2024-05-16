@@ -1,11 +1,11 @@
 //Made By Aayush
 public class Submarine extends Ships{
-    private static final int Power = 3;
-    private int orientation;
-    private int startColumn;
-    private int startRow;    
-    private static final int size = 3;
-    private boolean isSunk = false;
+    private static final int Power = 3;         //The variable used to indicate the power of the ship
+    private int orientation;                    //The variable used to indicate the orientation of the ship
+    private int startColumn;                    //The variable used to indicate the start column of the ship
+    private int startRow;                       //The variable used to indicate the start row of the ship
+    private static final int size = 3;          //blud blud you dont need to comment on this, it has to be in the SHIPS class and then inherited here and then decalared in the constrtor.
+    private boolean isSunk = false;             // okok ill copy it from here then
     public static final int identity = 5;
     private int lives = 2;
     

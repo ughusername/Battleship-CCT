@@ -1,5 +1,5 @@
 public abstract class Ships {
-    public static final int CARRIER = 1;
+    public static final int CARRIER = 1; 
     public static final int BATTLESHIP = 2;
     public static final int CRUISER = 3;
     public static final int DESTROYER = 4;
@@ -10,12 +10,12 @@ public abstract class Ships {
     private int shipType;
     private int numofShips = 5;
     
-    
+
     //==================== CONSTRUCTORS ====================//
     public Ships() {
     }
     
-    
+    //=================== PUBLIC METHODS ===================//
     public String GetShipName(int shipType) {
       switch (shipType) {
         case CARRIER:
@@ -66,4 +66,5 @@ public abstract class Ships {
      * @param opponent - the opponent player which stores the shipgrids
      * @param currPlayer - the currPlayer which stores the attackgrid  */
     public abstract void PowerAttack( int row, int col, Player opponent, Player curPlayer);
-  }   
+  
+}   

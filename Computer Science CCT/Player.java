@@ -3,9 +3,9 @@ public class Player {
     private int name;                //name of the Player
     private int lives;               //lives(ships) left of the player
     private Ships[] ShipTypes;       //Ship types of the player
-    public Ships[][] ShipGrid;
-    public int[][] AttackGrid; 
-    private int score;
+    public Ships[][] ShipGrid;       //the grid that shows the player's ship grid
+    public int[][] AttackGrid;       //the grid that shows the player's attack grid
+    private int score;               //score of the player 
     
     //======================= CONSTRUCTOR =======================//
     public Player(int name, int lives) {
@@ -59,4 +59,7 @@ public class Player {
       this.score += score;
     }
     
+    public Ships[][] GetShipGrid() {
+      return ShipGrid;
+    }
   }

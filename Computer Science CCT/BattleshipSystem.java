@@ -9,7 +9,7 @@ public class BattleshipSystem {
   private final static int isHIT = -3;                 //If the position on the grid is already hit
   private final static int INVALID_SHIP = -4;          //dk yet
   
-  private Ships[][] ShipGrid;    
+  public Ships[][] ShipGrid;    
   private int[][] AttackGrid;
   private Player[] allPlayers;
   private Player currPlayer;
@@ -63,7 +63,6 @@ public class BattleshipSystem {
         currPlayer.ShipGrid[row + i][col] = ShipType;
       }
     }
-    
     return SUCCESFULL; // Successful
   }
   
@@ -122,6 +121,10 @@ public class BattleshipSystem {
       this.currPlayer = allPlayers[1];
     }
   }  
+
+  public Player GetCurrPlayer() {
+    return currPlayer;
+  }
   
   //Made by Aayush
   /* Get the 2D Ships array
