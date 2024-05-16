@@ -1,16 +1,14 @@
 //Made By Aayush
 public class Battleship extends Ships {
     private static final int Power = 1;
-    private int orientation;
-    private int startColumn;
-    private int startRow;
     private static final int size = 4;
-    private boolean isSunk = false;
     private static final int identity = 2;
     private int lives = 4;
     
     //================= CONSTRUCTOR =================//
-    public Battleship() {
+    public Battleship(int startRow, int startColumn, int orientation, boolean IsSunk, boolean IsPlace) {
+      super(startRow, startColumn, orientation, IsSunk, IsPlace);
+      
     }
     
     //================ PUBLIC METHODS ===============//
@@ -64,8 +62,10 @@ public class Battleship extends Ships {
     public int GetSize() {
       return size;
     }
-    // wait leave this one. i might delete it later   ok, btw i should do value too right? like private variable
-    //for? the class like Power or isSunk etc...
+
+    /* Get the identity of the ship
+     * @return - the int identity of the ship which is based on private variable in subclass
+     */
     public int GetIdentity() {
       return identity;
     }

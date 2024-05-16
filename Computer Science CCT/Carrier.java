@@ -2,22 +2,23 @@
 import java.util.Random;
 
 public class Carrier extends Ships {
-  private static final int Power = 0;
+  private final int Power ;
   private int orientation;
   private int startColumn;
   private int startRow;
-  private static final int size = 5;
-  private boolean isSunk = false;
-  public static final int identity = 1;
-  private int lives = 5;
+  private final int size;
+  private boolean isSunk;
+  public static final int identity = 1; 
+  private int lives;
+  private boolean isPlace;
   
   //================= CONSTRUCTOR =================//
-  public Carrier(int orientation, int startRow, int startColumn) {
-    this.orientation = orientation;
-    this.startColumn = startColumn;
-    this.startRow = startRow;
+  public Carrier(int startRow, int startColumn, int orientation, boolean isSunk, boolean isPlace) {
+    super(startRow, startColumn, orientation, isSunk, isPlace);
+    this.Power = 0;
+    this.size =5;
+    this.lives = 5;
   }
-  //================ PUBLIC METHODS ===============//
   //================ PUBLIC METHODS ===============//
   /*Set the start row of the ship
    * @param Startrow - the starting row of the ship */
@@ -70,6 +71,9 @@ public class Carrier extends Ships {
     return size;
   }
   
+  /* Get the identity of the ship
+     * @return - the int identity of the ship which is based on private variable in subclass
+     */
   public int GetIdentity() {
     return identity;
   }

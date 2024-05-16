@@ -68,6 +68,9 @@ public class Destroyer extends Ships {
         return size;
     }
 
+    /* Get the identity of the ship
+     * @return - the int identity of the ship which is based on private variable in subclass
+     */
     public int GetIdentity() {
         return identity;
     }

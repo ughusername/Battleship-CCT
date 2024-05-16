@@ -4,15 +4,23 @@ public abstract class Ships {
     public static final int CRUISER = 3;
     public static final int DESTROYER = 4;
     public static final int SUBMARINE = 5;
-    private int startRow;
-    private int startColumn;
+    private int Power;
+    private int StartRow;
+    private int StartColumn;
     private int orientation;
-    private int shipType;
+    private int size;
+    private boolean isSunk;
+    private int lives;  
     private int numofShips = 5;
-    
+    private boolean isPlaced;
 
     //==================== CONSTRUCTORS ====================//
-    public Ships() {
+    public Ships(int StartRow, int StartColumn, int orientation, boolean isSunk, int lives, boolean isPlaced) {
+      this.StartColumn = StartColumn;
+      this.StartRow = StartRow;
+      this.orientation = orientation;
+      this.isSunk = isSunk;
+      this.isPlaced = isPlaced;
     }
     
     //=================== PUBLIC METHODS ===================//
@@ -58,6 +66,14 @@ public abstract class Ships {
     public abstract void SetLives(int live);
     
     public abstract int GetLives();
+
+    public abstract boolean IsPlaced();
+
+    public abstract boolean GetIsSunk();
+
+    public abstract void SetIsSunk();
+
+    public abstract void SetIsPlaced();
     
     //MADE BY AAYUSH
     /* Attacks with a special move and each ship has a special attack

@@ -8,6 +8,7 @@ public class BattleshipSystem {
   private final static int INVALID_BOX = -2;           //If the box is already occupied
   private final static int isHIT = -3;                 //If the position on the grid is already hit
   private final static int INVALID_SHIP = -4;          //dk yet
+  private final static int IS_PLACED = -4;             //If the ship is already placed
   
   public Ships[][] ShipGrid;    
   private int[][] AttackGrid;
@@ -40,6 +41,10 @@ public class BattleshipSystem {
     int gridCols = ShipGrid[0].length;
     
     // Check if row and col are within bounds
+    if (ShipType.isPlaced()){
+      return IS_PLACED;
+    }
+    
     if (row < 0 || row >= gridRows || col < 0 || col >= gridCols) {
       return OUT_OF_BOUNDS; // Out of bounds
     }

@@ -8,6 +8,7 @@ public class BattleshipMain {
     System.out.println("Welcom to Battleship Game. \nWho would like to go first? Player 1 or Player 2");
     int firstplayer = input.nextInt();
 
+
     
     System.out.println("Please enter the number of rounds you would like to play");
     int numRounds = input.nextInt();
@@ -30,7 +31,7 @@ public class BattleshipMain {
       int col = input.nextInt();
       System.out.println("If you would like to place it vertical, Enter 1. otherwise Enter 0 for horizontal");
       int orientation = input.nextInt();
-      Ships shipType = new Battleship();
+      Ships shipType = new Battleship(1, 2 ,3, 4, 5, false, 2);
       bs.InsertShip(row,col, shipType, orientation);
     }
     else if (ShipChoice == 2) {
