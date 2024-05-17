@@ -2,10 +2,8 @@
 public class Destroyer extends Ships {
     private final int Power;
     private final int size;
-    private boolean IsSunk;
     public static final int identity = 4;
     private int lives;
-    private boolean IsPlaced;
 
     //================= CONSTRUCTOR =================//
     public Destroyer(int startRow, int startColumn, int orientation, boolean isSunk, boolean isPlace) {
@@ -51,21 +49,6 @@ public class Destroyer extends Ships {
      return lives;
    }
 
-   public void SetIsPlaced(boolean isPlaced){
-    this.IsPlaced = isPlaced;
-   }
-
-   public boolean GetIsPlaced(){
-    return IsPlaced;
-   }
-
-   public void SetIsSunk(boolean IsSunk){
-    this.IsSunk = IsSunk;
-   }
-
-   public boolean GetIsSunk(){
-    return IsSunk;
-   }
     //MADE BY AAYUSH
     //Power to attack a 2x2 grid around the spot chosen by player
     public void PowerAttack(int row, int col, Player opponent, Player currPlayer){

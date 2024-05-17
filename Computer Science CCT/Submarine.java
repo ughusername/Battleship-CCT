@@ -4,9 +4,7 @@ public class Submarine extends Ships{
   private final int size;
   public final int identity = 5; 
   private int lives;
-  private boolean IsPlaced;
-  private boolean IsSunk;
-  
+
   //================= CONSTRUCTOR =================//
   public Submarine(int startRow, int startColumn, int orientation, boolean isSunk, boolean isPlace) {
     super(startRow, startColumn, orientation, isSunk, isPlace);
@@ -50,21 +48,6 @@ public class Submarine extends Ships{
      return lives;
    }
 
-   public void SetIsPlaced(boolean isPlaced){
-    this.IsPlaced = isPlaced;
-   }
-
-   public boolean GetIsPlaced(){
-    return IsPlaced;
-   }
-
-   public void SetIsSunk(boolean IsSunk){
-    this.IsSunk = IsSunk;
-   }
-
-   public boolean GetIsSunk(){
-    return IsSunk;
-   }
      
      //MADE BY AAYUSH
      //submarine will attack an entire column

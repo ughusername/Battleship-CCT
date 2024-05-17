@@ -4,8 +4,6 @@ public class Battleship extends Ships {
   private final int size;
   public final int identity = 1; 
   private int lives;
-  private boolean IsPlaced;
-  private boolean IsSunk;
   
   //================= CONSTRUCTOR =================//
   public Battleship(int startRow, int startColumn, int orientation, boolean isSunk, boolean isPlace) {
@@ -15,7 +13,6 @@ public class Battleship extends Ships {
     this.lives = 4;
   }
   //================ PUBLIC METHODS ===============//
-  
   /* Get the Power of the Ship
    * @return - the power (int value)
    */
@@ -50,21 +47,7 @@ public class Battleship extends Ships {
      return lives;
    }
 
-   public void SetIsPlaced(boolean isPlaced){
-    this.IsPlaced = isPlaced;
-   }
 
-   public boolean GetIsPlaced(){
-    return IsPlaced;
-   }
-
-   public void SetIsSunk(boolean IsSunk){
-    this.IsSunk = IsSunk;
-   }
-
-   public boolean GetIsSunk(){
-    return IsSunk;
-   }
      
      //MADE BY AAYUSH
      // Battleship will attack an entire column

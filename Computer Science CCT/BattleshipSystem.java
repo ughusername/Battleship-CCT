@@ -6,7 +6,7 @@ public class BattleshipSystem {
   private final static int SUCCESFULL = 1;             //If the method is successful 
   private final static int OUT_OF_BOUNDS = -1;         //If the row or column chosen is out of bounds
   private final static int INVALID_BOX = -2;           //If the box is already occupied
-  private final static int isHIT = -3;                 //If the position on the grid is already hit
+  private final static int is_HIT = -3;                 //If the position on the grid is already hit
   private final static int INVALID_SHIP = -4;          //dk yet
   private final static int IS_PLACED = -4;             //If the ship is already placed
   
@@ -68,19 +68,19 @@ public class BattleshipSystem {
         currPlayer.ShipGrid[row + i][col] = ShipType;
       }
     }
+    ShipType.SetIsPlaced(true);
     return SUCCESFULL; // Successful
   }
   
   //MADE BY AAYUSH
   public int Attack(int row, int col) {
     if (row > AttackGrid.length || col > AttackGrid[0].length) {
-      return OUT_OF_BOUNDS;
+      return OUT_OF_BOUNDS; 
     }
     else if (currPlayer.AttackGrid[row][col] == 1) {
-      return isHIT;
+      return is_HIT; //already hit. 
     }
     else {
-      if (currPlayer.GetName() == 0) {
         // Check if the attack hits a ship on the opponent's grid
         if (allPlayers[1].ShipGrid[row][col] != null) {
           currPlayer.AttackGrid[row][col] = 1; // Mark hit on players grid
@@ -91,26 +91,12 @@ public class BattleshipSystem {
           currPlayer.AttackGrid[row][col] = -1; // Mark miss on currPlayers grid
           return MISS; // Miss
         }
-      }
-      else {
-        if (allPlayers[0].ShipGrid[row][col] != null) {
-          currPlayer.AttackGrid[row][col] = 1; // Mark hit on currPlayers grid
-          allPlayers[0].ShipGrid[row][col] = null; //update one opponents shipgrid to null
-          return SUCCESFULL; // Hit
-        } 
-        else {
-          currPlayer.AttackGrid[row][col] = -1; // Mark miss on currPlayerss grid
-          return MISS; // Miss
-        }
-      }
     }
   }
   //MADE BY AAYUSH
   public int PerformPowerAttack(int Ship) {
-    if (currPlayer.GetName() == 0) {
       currPlayer.GetShipType(Ship).PowerAttack(0,0, allPlayers[1], currPlayer); 
-    }
-    return 1;
+      return 1;
   }
   
   //Made by Aayush

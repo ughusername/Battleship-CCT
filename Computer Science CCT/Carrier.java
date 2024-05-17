@@ -6,8 +6,6 @@ public class Carrier extends Ships {
   private final int size;
   public final int identity = 1; 
   private int lives;
-  private boolean IsPlaced;
-  private boolean IsSunk;
   
   //================= CONSTRUCTOR =================//
   public Carrier(int startRow, int startColumn, int orientation, boolean isSunk, boolean isPlace) {
@@ -50,22 +48,6 @@ public class Carrier extends Ships {
     */
    public int GetLives() {
      return lives;
-   }
-
-   public void SetIsPlaced(boolean isPlaced){
-    this.IsPlaced = isPlaced;
-   }
-
-   public boolean GetIsPlaced(){
-    return IsPlaced;
-   }
-
-   public void SetIsSunk(boolean IsSunk){
-    this.IsSunk = IsSunk;
-   }
-
-   public boolean GetIsSunk(){
-    return IsSunk;
    }
    
    //MADE BY AAYUSH

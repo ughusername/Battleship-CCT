@@ -9,6 +9,8 @@ public abstract class Ships {
     private int orientation;
     private int shipType;
     private int numofShips = 5;
+    private boolean IsPlaced;
+    private boolean IsSunk;
     
 
     //==================== CONSTRUCTORS ====================//
@@ -92,13 +94,21 @@ public abstract class Ships {
     
     public abstract int GetLives();
 
-    public abstract void SetIsPlaced(boolean IsPlaced);
-
-    public abstract boolean GetIsPlaced();
-
-    public abstract void SetIsSunk(boolean IsSunk);
-
-    public abstract boolean GetIsSunk();
+    public void SetIsPlaced(boolean isPlaced){
+      this.IsPlaced = isPlaced;
+     }
+  
+     public boolean GetIsPlaced(){
+      return IsPlaced;
+     }
+  
+     public void SetIsSunk(boolean IsSunk){
+      this.IsSunk = IsSunk;
+     }
+  
+     public boolean GetIsSunk(){
+      return IsSunk;
+     }
     
     //MADE BY AAYUSH
     /* Attacks with a special move and each ship has a special attack

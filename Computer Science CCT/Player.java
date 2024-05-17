@@ -62,4 +62,8 @@ public class Player {
     public Ships[][] GetShipGrid() {
       return ShipGrid;
     }
+
+    public int[][] GetAttackGrid() {
+      return AttackGrid;
+    }
   }
