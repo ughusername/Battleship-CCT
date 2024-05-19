@@ -7,10 +7,9 @@ public class BattleshipSystem {
   private final static int OUT_OF_BOUNDS = -1;         //If the row or column chosen is out of bounds
   private final static int INVALID_BOX = -2;           //If the box is already occupied
   private final static int is_HIT = -3;                 //If the position on the grid is already hit
-  private final static int INVALID_SHIP = -4;          //dk yet
   private final static int IS_PLACED = -4;             //If the ship is already placed
   
-  public Ships[][] ShipGrid;    
+  private Ships[][] ShipGrid;    
   private int[][] AttackGrid;
   private Player[] allPlayers;
   private Player currPlayer;
@@ -93,6 +92,7 @@ public class BattleshipSystem {
         }
     }
   }
+
   //MADE BY AAYUSH
   public int PerformPowerAttack(int Ship) {
       currPlayer.GetShipType(Ship).PowerAttack(0,0, allPlayers[1], currPlayer); 
@@ -113,8 +113,31 @@ public class BattleshipSystem {
     }
   }  
 
+  //Made by Aayush
   public Player GetCurrPlayer() {
     return currPlayer;
+  }
+
+  //Made by Aayush
+  public String GetCurrPlayerName(){
+    if (currPlayer.GetName() ==0) {
+      return "Captain 1";
+    }
+    else {
+      return "Captain 2";
+    }
+  }
+
+  //Made by Aayush
+  /* Switch player's turn to the next player (If current player is 1, then it 
+   * switches to O. If current player is O, then it switches to 1) */   
+  public void SwitchPlayer() {
+    if (currPlayer.GetName() == 0) {
+      currPlayer = allPlayers[1];
+    } 
+    else {
+      currPlayer = allPlayers[0];
+    }
   }
   
   //Made by Aayush
@@ -131,7 +154,7 @@ public class BattleshipSystem {
     return AttackGrid;
   }
   
-  //Made by aayush
+  //Made by Aayush
   /* Set the current round number.
    * @param newCurrRound - The current new round number */
   public void SetCurrRound(int newCurrRound) {
@@ -144,4 +167,20 @@ public class BattleshipSystem {
   public int GetNumRounds() {
     return numRounds;
   } 
+
+
+  //Made by Aayush
+  public boolean GetIsAllShipsPlaced(){
+    int count = 0;
+    for (int i = 0; i < currPlayer.GetShipTypes().length; i++)
+    if (currPlayer.GetShipType(i).GetIsPlaced()){
+      count++;
+    }
+    if (count == 5) {
+      return true;
+    }
+    else {
+      return false; 
+    }
+  }
 }
