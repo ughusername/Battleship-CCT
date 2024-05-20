@@ -2,7 +2,7 @@
 public class Battleship extends Ships {
   private final int Power ;
   private final int size;
-  public final int identity = 1; 
+  public final int identity = 2; 
   private int lives;
   
   //================= CONSTRUCTOR =================//

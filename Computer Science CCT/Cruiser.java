@@ -2,7 +2,7 @@
 public class Cruiser extends Ships {
   private final int NoPower ;
   private final int size;
-  public final int identity = 1; 
+  public final int identity = 3; 
   private int lives;
 
     //================= CONSTRUCTOR =================//

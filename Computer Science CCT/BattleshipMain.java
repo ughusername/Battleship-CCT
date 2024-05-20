@@ -21,8 +21,7 @@ public class BattleshipMain {
     System.out.println(" 1. Battleship(Size = 4) \n 2. Cruiser(Size = 3) \n 3. Carrier(Size = 5) \n 4. Destroyer(Size = 2) \n 5. Submarine(Size = 3)");
     int ShipChoice = input.nextInt();
 
-    while(!bs.GetIsAllShipsPlaced()) {
-      if (ShipChoice >5 || ShipChoice < 1) {
+    if (ShipChoice >5 || ShipChoice < 1) {
         System.out.println("Invaid Choice please choose again");
       }
       else if (ShipChoice == 1) {
@@ -76,12 +75,10 @@ public class BattleshipMain {
         int check = bs.InsertShip(row,col, shipType, orientation);
         System.out.println(check);
       }
+      displayer.DisplayAttackGrid(bs.GetCurrPlayer().GetAttackGrid());
+      bs.Attack(1, 1);
+      displayer.DisplayAttackGrid(bs.GetCurrPlayer().GetAttackGrid());
+      
+      displayer.DisplayShipGrid(bs.GetCurrPlayer().GetShipGrid());
+    }
   }
-
-    displayer.DisplayAttackGrid(bs.GetCurrPlayer().GetAttackGrid());
-    bs.Attack(1, 1);
-    displayer.DisplayAttackGrid(bs.GetCurrPlayer().GetAttackGrid());
-    
-    displayer.DisplayShipGrid(bs.GetCurrPlayer().GetShipGrid());
-  }
-}    

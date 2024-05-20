@@ -170,7 +170,7 @@ public class BattleshipSystem {
 
 
   //Made by Aayush
-  public boolean GetIsAllShipsPlaced(){
+  /*public boolean GetIsAllShipsPlaced(){
     int count = 0;
     for (int i = 0; i < currPlayer.GetShipTypes().length; i++)
     if (currPlayer.GetShipType(i).GetIsPlaced()){
@@ -182,5 +182,5 @@ public class BattleshipSystem {
     else {
       return false; 
     }
-  }
+  }*/
 }
