@@ -13,9 +13,10 @@ public class Player {
       this.lives = lives;
       this.ShipGrid = new Ships[10][10];
       this.AttackGrid = new int[10][10];
+      this.ShipTypes = new Ships[5];
     }
+
     //====================== PUBLIC METHOD =======================//    
-    
     /* Gets the player's name 
      * @return - The name */
     public int GetName(){
@@ -31,6 +32,10 @@ public class Player {
     /* Updates the players lives if a ship is sunk */
     public void LifeDecrease() {
       lives -= 1;
+    }
+
+    public void SetShipType(Ships shiptype, int index){
+      this.ShipTypes[index] = shiptype;
     }
     
     /* Gets the Ship Object at the specific index 
@@ -65,5 +70,9 @@ public class Player {
 
     public int[][] GetAttackGrid() {
       return AttackGrid;
+    }
+
+    public void AddShipToShipTypesArray(Ships shiptype, int index){
+      this.ShipTypes[index] = shiptype;
     }
   }

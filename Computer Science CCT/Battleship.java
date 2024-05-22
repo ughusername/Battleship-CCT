@@ -6,6 +6,10 @@ public class Battleship extends Ships {
   private int lives;
   
   //================= CONSTRUCTOR =================//
+  public Battleship(){
+    this.Power =1;
+    this.size = 4;
+  }
   public Battleship(int startRow, int startColumn, int orientation, boolean isSunk, boolean isPlace) {
     super(startRow, startColumn, orientation, isSunk, isPlace);
     this.Power = 1;

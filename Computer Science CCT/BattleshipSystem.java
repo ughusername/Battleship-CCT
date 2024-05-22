@@ -29,26 +29,32 @@ public class BattleshipSystem {
   }
   
   //========================= Private Method======================//
-  
+
   //========================= PUBLIC METHODS======================//
   //MADE BY AHMHED & AAYUSH
-  
+
+  //Made by Aayush
+  public void AddShipToShipTypesArray(Ships shiptype, int index){
+    currPlayer.SetShipType(shiptype, index);
+  }
+
   //MADE BY AAYUSH
   public int InsertShip(int row, int col, Ships ShipType, int orientation) {
     int size = ShipType.GetSize();
     int gridRows = ShipGrid.length;
     int gridCols = ShipGrid[0].length;
     
-    // Check if row and col are within bounds
+    //Check if Ship is already placed
     if (ShipType.GetIsPlaced()){
       return IS_PLACED;
     }
-    
+
+    // Check if row and col are within bounds
     if (row < 0 || row >= gridRows || col < 0 || col >= gridCols) {
       return OUT_OF_BOUNDS; // Out of bounds
     }
     
-    // Check if box is empty
+    // Check if box is full
     if (ShipGrid[row][col] != null) {
       return INVALID_BOX; // Box is full
     }
@@ -76,20 +82,23 @@ public class BattleshipSystem {
     if (row > AttackGrid.length || col > AttackGrid[0].length) {
       return OUT_OF_BOUNDS; 
     }
+
     else if (currPlayer.AttackGrid[row][col] == 1) {
       return is_HIT; //already hit. 
     }
+
     else {
-        // Check if the attack hits a ship on the opponent's grid
-        if (allPlayers[1].ShipGrid[row][col] != null) {
-          currPlayer.AttackGrid[row][col] = 1; // Mark hit on players grid
-          allPlayers[1].ShipGrid[row][col] = null; //update opponents shipgrid to null
-          return SUCCESFULL; // Hit
-        } 
-        else {
-          currPlayer.AttackGrid[row][col] = -1; // Mark miss on currPlayers grid
-          return MISS; // Miss
-        }
+      // Check if the attack hits a ship on the opponent's grid
+      if (allPlayers[1].ShipGrid[row][col] != null) {
+        currPlayer.AttackGrid[row][col] = 1; // Mark hit on players grid
+        allPlayers[1].ShipGrid[row][col] = null; //update opponents shipgrid to null
+        allPlayers[1].ShipGrid[row][col].SetLives(1);
+        return SUCCESFULL; // Hit
+      } 
+      else {
+        currPlayer.AttackGrid[row][col] = -1; // Mark miss on currPlayers grid
+        return MISS; // Miss
+      }
     }
   }
 
@@ -167,20 +176,4 @@ public class BattleshipSystem {
   public int GetNumRounds() {
     return numRounds;
   } 
-
-
-  //Made by Aayush
-  /*public boolean GetIsAllShipsPlaced(){
-    int count = 0;
-    for (int i = 0; i < currPlayer.GetShipTypes().length; i++)
-    if (currPlayer.GetShipType(i).GetIsPlaced()){
-      count++;
-    }
-    if (count == 5) {
-      return true;
-    }
-    else {
-      return false; 
-    }
-  }*/
 }

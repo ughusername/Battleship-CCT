@@ -2,12 +2,16 @@
 import java.util.Random;
 
 public class Carrier extends Ships {
-  private final int Power ;
+  private final int Power;
   private final int size;
   public final int identity = 1; 
   private int lives;
   
   //================= CONSTRUCTOR =================//
+  public Carrier() {
+    this.Power = 0;
+    this.size = 5;
+  }
   public Carrier(int startRow, int startColumn, int orientation, boolean isSunk, boolean isPlace) {
     super(startRow, startColumn, orientation, isSunk, isPlace);
     this.Power = 0;

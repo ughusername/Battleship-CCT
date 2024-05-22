@@ -6,6 +6,11 @@ public class Destroyer extends Ships {
     private int lives;
 
     //================= CONSTRUCTOR =================//
+    public Destroyer(){
+      this.Power = 2;
+      this.size = 2;
+    }
+
     public Destroyer(int startRow, int startColumn, int orientation, boolean isSunk, boolean isPlace) {
         super(startRow, startColumn, orientation, isSunk, isPlace);
         this.Power = 2;

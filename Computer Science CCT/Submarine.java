@@ -6,6 +6,11 @@ public class Submarine extends Ships{
   private int lives;
 
   //================= CONSTRUCTOR =================//
+  public Submarine(){
+    this.Power = 3;
+    this.size = 3;
+  }
+
   public Submarine(int startRow, int startColumn, int orientation, boolean isSunk, boolean isPlace) {
     super(startRow, startColumn, orientation, isSunk, isPlace);
     this.Power = 3;
