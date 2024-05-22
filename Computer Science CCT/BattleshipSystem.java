@@ -34,7 +34,7 @@ public class BattleshipSystem {
   //MADE BY AHMHED & AAYUSH
 
   //Made by Aayush
-  public void AddShipToShipTypesArray(Ships shiptype, int index){
+  public void AddShipType(Ships shiptype, int index){
     currPlayer.SetShipType(shiptype, index);
   }
 
