@@ -12,8 +12,8 @@ public class Carrier extends Ships {
     this.Power = 0;
     this.size = 5;
   }
-  public Carrier(int startRow, int startColumn, int orientation, boolean isSunk, boolean isPlace) {
-    super(startRow, startColumn, orientation, isSunk, isPlace);
+  public Carrier(int startRow, int startColumn, int orientation) {
+    super(startRow, startColumn, orientation);
     this.Power = 0;
     this.size =5;
     this.lives = 5;

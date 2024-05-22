@@ -34,7 +34,7 @@ public class Player {
       lives -= 1;
     }
 
-    public void SetShipType(Ships shiptype, int index){
+    public void AddShip(Ships shiptype, int index){
       this.ShipTypes[index] = shiptype;
     }
     

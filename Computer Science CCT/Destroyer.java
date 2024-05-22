@@ -11,8 +11,8 @@ public class Destroyer extends Ships {
       this.size = 2;
     }
 
-    public Destroyer(int startRow, int startColumn, int orientation, boolean isSunk, boolean isPlace) {
-        super(startRow, startColumn, orientation, isSunk, isPlace);
+    public Destroyer(int startRow, int startColumn, int orientation) {
+        super(startRow, startColumn, orientation);
         this.Power = 2;
         this.size =2;
         this.lives = 2;

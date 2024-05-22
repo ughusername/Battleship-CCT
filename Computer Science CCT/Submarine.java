@@ -11,8 +11,8 @@ public class Submarine extends Ships{
     this.size = 3;
   }
 
-  public Submarine(int startRow, int startColumn, int orientation, boolean isSunk, boolean isPlace) {
-    super(startRow, startColumn, orientation, isSunk, isPlace);
+  public Submarine(int startRow, int startColumn, int orientation) {
+    super(startRow, startColumn, orientation);
     this.Power = 3;
     this.size = 3;
     this.lives = 3;

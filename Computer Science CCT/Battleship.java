@@ -10,8 +10,8 @@ public class Battleship extends Ships {
     this.Power =1;
     this.size = 4;
   }
-  public Battleship(int startRow, int startColumn, int orientation, boolean isSunk, boolean isPlace) {
-    super(startRow, startColumn, orientation, isSunk, isPlace);
+  public Battleship(int startRow, int startColumn, int orientation) {
+    super(startRow, startColumn, orientation);
     this.Power = 1;
     this.size =4;
     this.lives = 4;

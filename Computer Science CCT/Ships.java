@@ -18,10 +18,12 @@ public abstract class Ships {
       
     }
 
-    public Ships(int startRow, int startColumn, int orientation, boolean isSunk, boolean isPlace) {
+    public Ships(int startRow, int startColumn, int orientation) {
       this.startColumn = startColumn;
       this.startRow = startRow;
       this.orientation = orientation;
+      this.IsPlaced = false;
+      this.IsSunk = false;
     }
     
     //=================== PUBLIC METHODS ===================//

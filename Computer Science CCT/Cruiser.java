@@ -10,8 +10,8 @@ public class Cruiser extends Ships {
     this.NoPower = 10;
     this.size = 3;
   }
-  public Cruiser(int startRow, int startColumn, int orientation, boolean isSunk, boolean isPlace) {
-    super(startRow, startColumn, orientation, isSunk, isPlace);
+  public Cruiser(int startRow, int startColumn, int orientation) {
+    super(startRow, startColumn, orientation);
     this.NoPower = 10;
     this.size =3;
     this.lives = 3;
