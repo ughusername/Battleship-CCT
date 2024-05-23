@@ -23,7 +23,7 @@ public class Battleship extends Ships {
   public int GetIdentity() {
     return identity;
   }
-       
+  
   //MADE BY AAYUSH
   /* Battleship will attack an entire column
    * @param row - the row from which the attack starts
@@ -31,14 +31,22 @@ public class Battleship extends Ships {
    * @param opponent - the opponent player whose ship grid will be attacked
    * @param currPlayer - the current player who is performing the attack
    */
-  public void PowerAttack(int row, int col, Player opponent, Player currPlayer) {
-    for (int i = 0; i < 10; i++) {
-      if (opponent.ShipGrid[i][col] != null) {
-        currPlayer.AttackGrid[i][col] = 1;               // Mark hit on current player's attack grid
-        opponent.ShipGrid[i][col].SetLives(1);           // Decrease the life of the hit ship
-      } else {
-        currPlayer.AttackGrid[i][col] = 0;               // Mark miss on current player's attack grid
+  public int PowerAttack(int row, int col, Player opponent, Player currPlayer) {
+    if (this.GetPower() == -1) {
+      return this.No_POWER;
+    }
+    else {
+      for (int i = 0; i < 10; i++) {
+        if (opponent.ShipGrid[i][col] != null) {
+          currPlayer.AttackGrid[i][col] = 1;               // Mark hit on current player's attack grid
+          opponent.ShipGrid[i][col].SetLives(1);           // Decrease the life of the hit ship
+        } 
+        else {
+          currPlayer.AttackGrid[i][col] = -1;               // Mark miss on current player's attack grid
+        }
       }
+      this.SetPower(-1);
+      return this.SUCCESSFUL;
     }
   }
 }

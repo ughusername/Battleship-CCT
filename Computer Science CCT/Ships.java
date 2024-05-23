@@ -14,6 +14,8 @@ public abstract class Ships {
   private int Power;                        // The power of the ship
   private int size;                         // The size of the ship
   private int lives;                        // The lives of the ship
+  public int SUCCESSFUL = 1;                // Value to return if method is succesful
+  public int No_POWER = -1;                 // Value to return if ship has no power
   
   //==================== CONSTRUCTORS ====================//
   public Ships() {
@@ -108,6 +110,10 @@ public abstract class Ships {
   public int GetPower() {
     return Power;
   }
+
+  public void SetPower(int power){
+    this.Power = -1;
+  }
   
   /* Get the size of the ship
    * @return - the size of the ship
@@ -165,7 +171,7 @@ public abstract class Ships {
    * @param opponent - the opponent player who stores the ship grids
    * @param currPlayer - the current player who stores the attack grid
    */
-  public abstract void PowerAttack(int row, int col, Player opponent, Player curPlayer);
+  public abstract int PowerAttack(int row, int col, Player opponent, Player curPlayer);
   
   //Made by Aayush
   /* Get the identity of the ship

@@ -1,7 +1,7 @@
 //Made By Aayush
 public class Cruiser extends Ships {
   public final int identity = 3;         // The variable to hold the identity of the ship
-
+  
   //================= CONSTRUCTOR =================//
   //Made By Aayush
   /* Constructor to initialize a Cruiser object
@@ -15,7 +15,7 @@ public class Cruiser extends Ships {
   public Cruiser(int startRow, int startColumn, int orientation, int Power, int size, int lives) {
     super(startRow, startColumn, orientation, Power, size, lives);
   }
-
+  
   //================ PUBLIC METHODS ===============//
   //Made By Aayush
   /* Get the identity of the ship
@@ -24,7 +24,7 @@ public class Cruiser extends Ships {
   public int GetIdentity() {
     return identity;
   }
-
+  
   //MADE BY AHMED
   /* Attack the grid with power accordingly
    * @param row - the row of the grid
@@ -32,7 +32,8 @@ public class Cruiser extends Ships {
    * @param opponent - the opponent player whose ship grid will be attacked
    * @param currPlayer - the current player who is performing the attack
    */
-  public void PowerAttack(int row, int col, Player opponent, Player currPlayer) {
-    // Implementation of the Cruiser's power attack
+  public int PowerAttack(int row, int col, Player opponent, Player currPlayer) {
+    return this.No_POWER;
+    //No powerAttack for cruiser
   }
 }

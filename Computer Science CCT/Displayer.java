@@ -31,7 +31,7 @@ public class Displayer {
       System.out.printf("%4d  ", col + 1);
     }
     System.out.println("");
-    System.out.println("    -------------------------------------------------------------");
+    System.out.println("     -------------------------------------------------------------");
 
     // Print the board
     for (int row = 0; row < rows; row++) {
@@ -39,13 +39,13 @@ public class Displayer {
       for (int col = 0; col < cols; col++) {
         if (grid[row][col] == 1 ) { // 1 is hit
           System.out.print("  X  |");                         
-        } else if (grid[row][col] == 0){ // 0 is miss
-          System.out.print("  O  |");
-        } else if (grid[row][col] == -1) { // -1 is empty
+        } else if (grid[row][col] == 0){ // 0 is empty
           System.out.print("     |");
+        } else if (grid[row][col] == -1) { // -1 is miss
+          System.out.print("  O  |");
         }
       }
-      System.out.println("\n    -------------------------------------------------------------");
+      System.out.println("\n     -------------------------------------------------------------");
     }
     System.out.println();
   }
@@ -115,5 +115,4 @@ public class Displayer {
   public void ShowRound(int roundNum) {
     System.out.println("*************** ROUND " + roundNum + " *************");
   }
-
 }

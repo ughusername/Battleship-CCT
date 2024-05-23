@@ -39,23 +39,27 @@ public class BattleshipSystem {
     if (choice == 1) {
       Ships battleShip = new Battleship(row, col, orientation, 1, 4, 4);
       currPlayer.AddShip(battleShip, Ships.BATTLESHIP - 1);
-      return battleShip;
-    } else if (choice == 2) {
+      return battleShip; //creates a battleship
+    } 
+    else if (choice == 2) {
       Ships cruiser = new Cruiser(row, col, orientation, 10, 3, 3);
       currPlayer.AddShip(cruiser, Ships.CRUISER - 1);
-      return cruiser;
-    } else if (choice == 3) {
+      return cruiser; //creates a cruiser
+    } 
+    else if (choice == 3) {
       Ships carrier = new Carrier(row, col, orientation, 0, 5, 5);
       currPlayer.AddShip(carrier, Ships.CARRIER - 1);
-      return carrier;
-    } else if (choice == 4) {
+      return carrier; //creates a carrier
+    } 
+    else if (choice == 4) {
       Ships destroyer = new Destroyer(row, col, orientation, 2, 2, 2);
       currPlayer.AddShip(destroyer, Ships.DESTROYER - 1);
-      return destroyer;
-    } else {
+      return destroyer; //creates a destroyer
+    } 
+    else {
       Ships submarine = new Submarine(row, col, orientation, 3, 3, 3);
       currPlayer.AddShip(submarine, Ships.SUBMARINE - 1);
-      return submarine;
+      return submarine; //creates a Submarine
     }
   }
   
@@ -98,7 +102,8 @@ public class BattleshipSystem {
         if (currPlayer.ShipGrid[row][col + i] != null) {
           return INVALID_BOX;
         }
-      } else { // Vertical placement
+      } 
+      else { // Vertical placement
         if (currPlayer.ShipGrid[row + i][col] != null) {
           return INVALID_BOX;
         }
@@ -109,7 +114,8 @@ public class BattleshipSystem {
     for (int i = 0; i < size; i++) {
       if (orientation == 0) { // Horizontal placement
         currPlayer.ShipGrid[row][col + i] = shipType;
-      } else { // Vertical placement
+      } 
+      else { // Vertical placement
         currPlayer.ShipGrid[row + i][col] = shipType;
       }
     }
@@ -126,16 +132,19 @@ public class BattleshipSystem {
   public int Attack(int row, int col) {
     if (row > currPlayer.AttackGrid.length || col > currPlayer.AttackGrid[0].length) {
       return OUT_OF_BOUNDS; 
-    } else if (currPlayer.AttackGrid[row][col] == 1) {
+    } 
+    else if (currPlayer.AttackGrid[row][col] == 1) {
       return is_HIT; // Already hit
-    } else {
+    } 
+    else {
       // Check if the attack hits a ship on the opponent's grid
       if (allPlayers[1].ShipGrid[row][col] != null) {
         currPlayer.AttackGrid[row][col] = 1; // Mark hit on player's grid
         allPlayers[1].ShipGrid[row][col].SetLives(1); // Decrease the life of the hit ship
         allPlayers[1].ShipGrid[row][col] = null; // Update opponent's ship grid to null
         return SUCCESSFUL; // Hit
-      } else {
+      } 
+      else {
         currPlayer.AttackGrid[row][col] = -1; // Mark miss on player's grid
         return MISS; // Miss
       }
@@ -146,8 +155,8 @@ public class BattleshipSystem {
   /* Perform a power attack with the specified ship
    * @param ship - the type of ship to perform the power attack
    */
-  public void PerformPowerAttack(int ship) {
-    currPlayer.GetShipType(ship).PowerAttack(0, 0, allPlayers[1], currPlayer); 
+  public int PerformPowerAttack(int ship) {
+    return currPlayer.GetShipType(ship).PowerAttack(0, 0, allPlayers[1], currPlayer); 
   }
   
   //Made by Aayush
@@ -157,7 +166,8 @@ public class BattleshipSystem {
   public void SetCurrPlayer(int index) {
     if (index == 0) {
       this.currPlayer = allPlayers[0];
-    } else {
+    } 
+    else {
       this.currPlayer = allPlayers[1];
     }
   }  
@@ -177,7 +187,8 @@ public class BattleshipSystem {
   public String GetCurrPlayerName() {
     if (currPlayer.GetName() == 0) {
       return "Captain 1";
-    } else {
+    } 
+    else {
       return "Captain 2";
     }
   }
@@ -188,7 +199,8 @@ public class BattleshipSystem {
   public void SwitchPlayer() {
     if (currPlayer.GetName() == 0) {
       currPlayer = allPlayers[1];
-    } else {
+    } 
+    else {
       currPlayer = allPlayers[0];
     }
   }
@@ -208,7 +220,7 @@ public class BattleshipSystem {
   public int GetNumRounds() {
     return numRounds;
   } 
-
+  
   //Made by Aayush
   /* Get the current round number
    * @return - the current round number
@@ -220,17 +232,18 @@ public class BattleshipSystem {
   //Made by Aayush
   /* Check if the current round has a winner
    * @return - true if the current player has
-
- no remaining lives, false otherwise
+   * 
+   no remaining lives, false otherwise
    */
   public boolean HasRoundWinner() {
     if (currPlayer.GetLives() == 0) {
       return true;
-    } else {
+    } 
+    else {
       return false; 
     }
   }
-
+  
   //Made by Aayush
   /* Get the game winner based on the score
    * @return - the index of the winning player (0 or 1)
@@ -238,7 +251,8 @@ public class BattleshipSystem {
   public int GetGameWinnner() {
     if (allPlayers[0].GetScore() > allPlayers[1].GetScore()) {
       return 0;
-    } else {
+    } 
+    else {
       return 1;
     }
   }

@@ -1,7 +1,7 @@
 //Made By Aayush
 public class Submarine extends Ships { 
   public final int identity = 5;          // The variable to hold the identity of the ship
-
+  
   //================= CONSTRUCTOR =================//
   //Made By Aayush
   /* Constructor to initialize a Submarine object
@@ -15,7 +15,7 @@ public class Submarine extends Ships {
   public Submarine(int startRow, int startColumn, int orientation, int Power, int size, int lives) {
     super(startRow, startColumn, orientation, Power, size, lives);
   }
-
+  
   //================ PUBLIC METHODS ===============//
   //Made By Aayush
   /* Get the identity of the ship
@@ -24,7 +24,7 @@ public class Submarine extends Ships {
   public int GetIdentity() {
     return identity;
   }
-
+  
   //Made By Aayush
   /* Submarine will attack an entire column
    * @param row - the row from which the attack starts
@@ -32,14 +32,21 @@ public class Submarine extends Ships {
    * @param opponent - the opponent player whose ship grid will be attacked
    * @param currPlayer - the current player who is performing the attack
    */
-  public void PowerAttack(int row, int col, Player opponent, Player currPlayer) {
-    for (int i = 0; i < 10; i++) {
-      if (opponent.ShipGrid[row][i] != null) {
-        currPlayer.AttackGrid[row][i] = 1;               // Mark hit on current player's attack grid
-        opponent.ShipGrid[row][i].SetLives(1);           // Decrease the life of the hit ship
-      } else {
-        currPlayer.AttackGrid[row][i] = 0;               // Mark miss on current player's attack grid
+  public int PowerAttack(int row, int col, Player opponent, Player currPlayer) {
+    if (this.GetPower() == -1) {
+      return this.No_POWER; //Already used Power cannot use again
+    }
+    else {
+      for (int i = 0; i < 10; i++) {
+        if (opponent.ShipGrid[row][i] != null) {
+          currPlayer.AttackGrid[row][i] = 1;               // Mark hit on current player's attack grid
+          opponent.ShipGrid[row][i].SetLives(1);           // Decrease the life of the hit ship
+        } else {
+          currPlayer.AttackGrid[row][i] = -1;               // Mark miss on current player's attack grid
+        }
       }
+      this.SetPower(-1);
+      return this.SUCCESSFUL;
     }
   }
 }
