@@ -1,9 +1,9 @@
 //Made By Aayush
 public class Cruiser extends Ships {
-  private final int NoPower ;
-  private final int size;
-  public final int identity = 3; 
-  private int lives;
+  private final int NoPower ;            //The variable to hold the power uniquely assigned to each ship
+  private final int size;                //The variable to hold the size of the ship 
+  public final int identity = 3;         //The variable to hold the identity of the ship
+  private int lives;                     //The variable to hold the number of lives of the ship
 
     //================= CONSTRUCTOR =================//
   public Cruiser(){

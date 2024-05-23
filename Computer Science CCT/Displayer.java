@@ -48,11 +48,11 @@ public class Displayer {
       System.out.printf("%4d  ", col + 1);
     }
     System.out.println("");
-    System.out.println("   -------------------------------------------------------------");
+    System.out.println("    -------------------------------------------------------------");
     
     // Print the board
     for (int row = 0; row < rows; row++) {
-      System.out.print(row + 1 + "  |");
+      System.out.printf("%3d  |", row + 1 );
       for (int col = 0; col < cols; col++) {
         if (grid[row][col] == 1 ) {                              //1 is hit
           System.out.print("  X  |");                         
@@ -63,7 +63,7 @@ public class Displayer {
           System.out.print("     |");
         }
       }
-      System.out.println("\n   -------------------------------------------------------------");
+      System.out.println("\n    -------------------------------------------------------------");
     }
     System.out.println();
   }
@@ -80,10 +80,10 @@ public class Displayer {
     }
     
     System.out.println("");
-    System.out.println("   -------------------------------------------------------------");
+    System.out.println("     -------------------------------------------------------------");
     
     for (int i = 0; i < ShipGrid.length; i++) {
-      System.out.print(i + 1 + "  |");
+      System.out.printf("%3d  |", i + 1 );
       for (int j = 0; j < ShipGrid[i].length; j++) {
         Ships ship = ShipGrid[i][j]; 
         if (ship == null) {
@@ -111,7 +111,7 @@ public class Displayer {
           }
         }
       }
-      System.out.println("\n   -------------------------------------------------------------");
+      System.out.println("\n     -------------------------------------------------------------");
     }
   }  
    

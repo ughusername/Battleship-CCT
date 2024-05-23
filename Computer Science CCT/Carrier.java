@@ -2,10 +2,10 @@
 import java.util.Random;
 
 public class Carrier extends Ships {
-  private final int Power;
-  private final int size;
-  public final int identity = 1; 
-  private int lives;
+  private final int Power;            //The variable to hold the power uniquely assigned to each ship(carrier does not have power)
+  private final int size;             //The variable to hold the size of the ship 
+  public final int identity = 1;      //The variable to hold the identity of the ship
+  private int lives;                  //The variable to hold the number of lives of the ship
   
   //================= CONSTRUCTOR =================//
   public Carrier() {

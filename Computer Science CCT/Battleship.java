@@ -1,9 +1,8 @@
-//Made By Aayush
 public class Battleship extends Ships {
-  private final int Power ;
-  private final int size;
-  public final int identity = 2; 
-  private int lives;
+  private final int Power;       //
+  private final int size;         //
+  public final int identity = 2;  //
+  private int lives;              //
   
   //================= CONSTRUCTOR =================//
   public Battleship(){
@@ -12,6 +11,7 @@ public class Battleship extends Ships {
   }
   public Battleship(int startRow, int startColumn, int orientation) {
     super(startRow, startColumn, orientation);
+    
     this.Power = 1;
     this.size =4;
     this.lives = 4;

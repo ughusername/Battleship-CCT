@@ -101,7 +101,7 @@ public class BattleshipMain {
           System.out.println("Which Column would you like to attack");
           int col = input.nextInt();
           int check = bs.Attack(row, col);
-        
+          
           if (check == -1){
             System.out.println("The position chosen is out of bounds, please choose another position");
           }
@@ -131,5 +131,5 @@ public class BattleshipMain {
     bs.SwitchPlayer();
     lives = bs.GetCurrPlayer().GetLives();
     bs.GetCurrPlayer().AddScore(lives*10);
-}
+  }
 }

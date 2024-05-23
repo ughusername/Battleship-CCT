@@ -1,16 +1,17 @@
 public abstract class Ships {
-    public static final int CARRIER = 1; 
-    public static final int BATTLESHIP = 2;
-    public static final int CRUISER = 3;
-    public static final int DESTROYER = 4;
-    public static final int SUBMARINE = 5;
-    private int startRow;
-    private int startColumn;
-    private int orientation;
-    private int shipType;
-    private int numofShips = 5;
-    private boolean IsPlaced;
-    private boolean IsSunk;
+    public static final int CARRIER = 1;      //The variable that stores the Carrier 
+    public static final int BATTLESHIP = 2;   //The variable that stores the Battleship
+    public static final int CRUISER = 3;      //The variable that stores the Cruiser
+    public static final int DESTROYER = 4;    //The variable that stores the Destroyer
+    public static final int SUBMARINE = 5;    //The variable that stores the Submarine
+    private int startRow;                     //The variable for the starting row of the ship 
+    private int startColumn;                  //The variable for the starting coloumn of the ship
+    private int orientation;                  //The orientation of the ship wheather the ship is horizontal or vertical 
+    private int shipType;                     //The variable that holds the ship type of the ship
+    private int numofShips = 5;               //The variable that holds the number of ships
+    private boolean IsPlaced;                 //Check if the ship is placed or not
+    private boolean IsSunk;                   //Check if the ship is sunk or not 
+    private int Power;
     
 
     //==================== CONSTRUCTORS ====================//

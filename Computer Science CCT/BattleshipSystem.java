@@ -1,21 +1,17 @@
 //Made by Aayush
 public class BattleshipSystem {
-  public final static int HEIGHT = 10;                 //fixed height of the grid
-  public final static int WIDTH = 10;                  //fixed width of the grid
   private final static int MISS = 0;                   //Used in attack method if player has missed the ship
   private final static int SUCCESSFUL = 1;             //If the method is successful 
   private final static int OUT_OF_BOUNDS = -1;         //If the row or column chosen is out of bounds
   private final static int INVALID_BOX = -2;           //If the box is already occupied
-  private final static int is_HIT = -3;                 //If the position on the grid is already hit
+  private final static int is_HIT = -3;                //If the position on the grid is already hit
   private final static int IS_PLACED = -4;             //If the ship is already placed
   
-  private Ships[][] ShipGrid;    
-  private int[][] AttackGrid;
-  private Player[] allPlayers;
-  private Player currPlayer;
-  public Object bs;
-  private int numRounds;
-  private int currRound;
+  private Player[] allPlayers;                         //
+  private Player currPlayer;                           //
+  public Object bs;                                    //
+  private int numRounds;                               //
+  private int currRound;                               //
   
   //======================== Constructor =========================//
   //Made BY AAYUSH
@@ -24,8 +20,6 @@ public class BattleshipSystem {
     allPlayers[0] = new Player(0, 5);
     allPlayers[1] = new Player(1, 5);
     this.numRounds = numRounds;
-    ShipGrid = new Ships[HEIGHT][WIDTH];
-    AttackGrid = new int[HEIGHT][WIDTH];
   }
   
   //========================= Private Method======================//
@@ -65,8 +59,8 @@ public class BattleshipSystem {
   //MADE BY AAYUSH
   public int InsertShip(int row, int col, Ships ShipType, int orientation) {
     int size = ShipType.GetSize();
-    int gridRows = ShipGrid.length;
-    int gridCols = ShipGrid[0].length;
+    int gridRows = currPlayer.ShipGrid.length;
+    int gridCols = currPlayer.ShipGrid[0].length;
     
     // Check if the ship is already placed
     if (ShipType.GetIsPlaced()) {
@@ -94,7 +88,8 @@ public class BattleshipSystem {
         if (currPlayer.ShipGrid[row][col + i] != null) {
           return INVALID_BOX;
         }
-      } else { // Vertical placement
+      } 
+      else { // Vertical placement
         if (currPlayer.ShipGrid[row + i][col] != null) {
           return INVALID_BOX;
         }
@@ -116,7 +111,7 @@ public class BattleshipSystem {
   
   //MADE BY AAYUSH
   public int Attack(int row, int col) {
-    if (row > AttackGrid.length || col > AttackGrid[0].length) {
+    if (row > currPlayer.AttackGrid.length || col > currPlayer.AttackGrid[0].length) {
       return OUT_OF_BOUNDS; 
     }
     
@@ -140,9 +135,9 @@ public class BattleshipSystem {
   }
   
   //MADE BY AAYUSH
-  public int PerformPowerAttack(int Ship) {
+  /*Method to call*/
+  public void PerformPowerAttack(int Ship) {
     currPlayer.GetShipType(Ship).PowerAttack(0,0, allPlayers[1], currPlayer); 
-    return 1;
   }
   
   //Made by Aayush
@@ -176,7 +171,7 @@ public class BattleshipSystem {
   
   //Made by Aayush
   /* Switch player's turn to the next player (If current player is 1, then it 
-   * switches to O. If current player is O, then it switches to 1) */   
+   * switches to 0. If current player is 0, then it switches to 1) */   
   public void SwitchPlayer() {
     if (currPlayer.GetName() == 0) {
       currPlayer = allPlayers[1];
@@ -184,20 +179,6 @@ public class BattleshipSystem {
     else {
       currPlayer = allPlayers[0];
     }
-  }
-  
-  //Made by Aayush
-  /* Get the 2D Ships array
-   * @return - The 2D grid containing Ship objects */
-  public Ships[][] GetShipGrid(){
-    return ShipGrid;
-  }
-  
-  //Made by Aayush
-  /* Get the 2D array Attackgrid
-   * @return - The 2D grid containing integers */
-  public int[][] GetAttackGrid() {
-    return AttackGrid;
   }
   
   //Made by Aayush

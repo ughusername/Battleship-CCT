@@ -1,18 +1,20 @@
 //Made by Aayush
 public class Player {
-    private int name;                //name of the Player
-    private int lives;               //lives(ships) left of the player
-    private Ships[] ShipTypes;       //Ship types of the player
-    public Ships[][] ShipGrid;       //the grid that shows the player's ship grid
-    public int[][] AttackGrid;       //the grid that shows the player's attack grid
-    private int score;               //score of the player 
+    private final int HEIGHT = 10;                 //fixed height of the grid
+    private final int WIDTH = 10;                  //fixed width of the grid
+    private int name;                              //name of the Player
+    private int lives;                             //lives(ships) left of the player
+    private Ships[] ShipTypes;                     //Ship types of the player
+    public Ships[][] ShipGrid;                     //the grid that shows the player's ship grid
+    public int[][] AttackGrid;                     //the grid that shows the player's attack grid
+    private int score;                             //score of the player 
     
     //======================= CONSTRUCTOR =======================//
     public Player(int name, int lives) {
       this.name = name;
       this.lives = lives;
-      this.ShipGrid = new Ships[10][10];
-      this.AttackGrid = new int[10][10];
+      this.ShipGrid = new Ships[HEIGHT][WIDTH];
+      this.AttackGrid = new int[HEIGHT][WIDTH];
       this.ShipTypes = new Ships[5];
     }
 
