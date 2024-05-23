@@ -1,80 +1,90 @@
-//Made by Aayush
+// Made by Aayush
 public class Player {
-    private final int HEIGHT = 10;                 //fixed height of the grid
-    private final int WIDTH = 10;                  //fixed width of the grid
-    private int name;                              //name of the Player
-    private int lives;                             //lives(ships) left of the player
-    private Ships[] ShipTypes;                     //Ship types of the player
-    public Ships[][] ShipGrid;                     //the grid that shows the player's ship grid
-    public int[][] AttackGrid;                     //the grid that shows the player's attack grid
-    private int score;                             //score of the player 
-    
-    //======================= CONSTRUCTOR =======================//
-    public Player(int name, int lives) {
+  private final int HEIGHT = 10;                 // Fixed height of the grid
+  private final int WIDTH = 10;                  // Fixed width of the grid
+  private int name;                              // Name of the player
+  private int lives;                             // Lives (ships) left of the player
+  private Ships[] ShipTypes;                     // Array to store the ships of the player
+  public Ships[][] ShipGrid;                     // The grid that shows the player's ship grid
+  public int[][] AttackGrid;                     // The grid that shows the player's attack grid
+  private int score;                             // Score of the player 
+
+  //======================= CONSTRUCTOR =======================//
+  public Player(int name, int lives) {
       this.name = name;
       this.lives = lives;
       this.ShipGrid = new Ships[HEIGHT][WIDTH];
       this.AttackGrid = new int[HEIGHT][WIDTH];
       this.ShipTypes = new Ships[5];
-    }
-
-    //====================== PUBLIC METHOD =======================//    
-    /* Gets the player's name 
-     * @return - The name */
-    public int GetName(){
-      return name; 
-    }
-    
-    /* Gets the player's amount of lives
-     * @return - The amount of lives*/
-    public int GetLives() {
-      return lives; 
-    }
-    
-    /* Updates the players lives if a ship is sunk */
-    public void LifeDecrease() {
-      lives -= 1;
-    }
-
-    public void AddShip(Ships shiptype, int index){
-      this.ShipTypes[index] = shiptype;
-    }
-    
-    /* Gets the Ship Object at the specific index 
-     * @param index - the position in the array at which the ship is stored 
-     * @return Ships - Shipobject
-    */
-    public Ships GetShipType(int index) {
-      return ShipTypes[index];
-    }
-    
-    /*Get the Array of ShipType */
-    public Ships[] GetShipTypes() {
-      return ShipTypes;
-    }
-    
-    /* Get the Players Score 
-     * @return score - The Players score */
-    public int GetScore() {
-      return score;
-    }
-    
-    /* Add scores to the player's exiting score
-    * @param score - The score that needs to be added
-    *                to the player's score */
-    public void AddScore(int score) {
-      this.score += score;
-    }
-    
-    public Ships[][] GetShipGrid() {
-      return ShipGrid;
-    }
-
-    public int[][] GetAttackGrid() {
-      return AttackGrid;
-    }
-
-    public void AddShipToShipTypesArray(Ships shiptype, int index){
-      this.ShipTypes[index] = shiptype;
-    }
   }
+
+  //====================== PUBLIC METHODS =======================//    
+
+  /* Gets the player's name 
+   * @return - The name */
+  public int GetName() {
+      return name; 
+  }
+  
+  /* Gets the player's amount of lives
+   * @return - The amount of lives */
+  public int GetLives() {
+      return lives; 
+  }
+  
+  /* Updates the player's lives if a ship is sunk */
+  public void LifeDecrease() {
+      lives -= 1;
+  }
+
+  /* Adds a ship to the player's ship types at the specified index 
+   * @param shiptype - The ship type to add
+   * @param index - The index at which to add the ship type */
+  public void AddShip(Ships shiptype, int index) {
+      this.ShipTypes[index] = shiptype;
+  }
+  
+  /* Gets the Ship object at the specific index 
+   * @param index - The position in the array at which the ship is stored 
+   * @return Ships - Ship object */
+  public Ships GetShipType(int index) {
+      return ShipTypes[index];
+  }
+  
+  /* Gets the array of ShipType 
+   * @return - The array of ShipType */
+  public Ships[] GetShipTypes() {
+      return ShipTypes;
+  }
+  
+  /* Gets the player's score 
+   * @return score - The player's score */
+  public int GetScore() {
+      return score;
+  }
+  
+  /* Adds scores to the player's existing score
+   * @param score - The score to be added to the player's score */
+  public void AddScore(int score) {
+      this.score += score;
+  }
+  
+  /* Gets the player's ship grid 
+   * @return - The ship grid */
+  public Ships[][] GetShipGrid() {
+      return ShipGrid;
+  }
+
+  /* Gets the player's attack grid 
+   * @return - The attack grid */
+  public int[][] GetAttackGrid() {
+      return AttackGrid;
+  }
+
+  /* Adds a ship to the player's ship types array at the specified index
+   * @param shiptype - The ship type to add
+   * @param index - The index at which to add the ship type */
+  public void AddShipToShipTypesArray(Ships shiptype, int index) {
+      this.ShipTypes[index] = shiptype;
+  }
+}

@@ -1,65 +1,38 @@
 //Made By Aayush
 public class Cruiser extends Ships {
-  private final int NoPower ;            //The variable to hold the power uniquely assigned to each ship
-  private final int size;                //The variable to hold the size of the ship 
-  public final int identity = 3;         //The variable to hold the identity of the ship
-  private int lives;                     //The variable to hold the number of lives of the ship
+  public final int identity = 3;         // The variable to hold the identity of the ship
 
-    //================= CONSTRUCTOR =================//
-  public Cruiser(){
-    this.NoPower = 10;
-    this.size = 3;
-  }
-  public Cruiser(int startRow, int startColumn, int orientation) {
-    super(startRow, startColumn, orientation);
-    this.NoPower = 10;
-    this.size =3;
-    this.lives = 3;
-  }
-    //================ PUBLIC METHODS ===============//
-    
-  /* Get the Power of the Ship
-   * @return - the power (int value)
+  //================= CONSTRUCTOR =================//
+  //Made By Aayush
+  /* Constructor to initialize a Cruiser object
+   * @param startRow - the starting row of the cruiser
+   * @param startColumn - the starting column of the cruiser
+   * @param orientation - the orientation of the cruiser (0 for horizontal, 1 for vertical)
+   * @param Power - the power of the cruiser
+   * @param size - the size of the cruiser
+   * @param lives - the number of lives of the cruiser
    */
-  public int GetPower() {
-    return NoPower;
+  public Cruiser(int startRow, int startColumn, int orientation, int Power, int size, int lives) {
+    super(startRow, startColumn, orientation, Power, size, lives);
   }
-  
-  /* Gets the size of the ship 
-   * @return - the int size of ship which is based on private variable in subclass
-   */
-  public int GetSize() {
-    return size;
-  }
-  
+
+  //================ PUBLIC METHODS ===============//
+  //Made By Aayush
   /* Get the identity of the ship
-     * @return - the int identity of the ship which is based on private variable in subclass
-     */
+   * @return - the int identity of the ship which is based on a private variable in the subclass
+   */
   public int GetIdentity() {
     return identity;
   }
-  
-  /* Set the number of lives of the ship as it decreases by one 
-   @param live - the lives of the ship */
-   public void SetLives(int live) {
-     this.lives -= live;
-   }
-   
-   /* Gets the lives of the ship
-    * @return - the number of remaining lives that the ship has  
-    */
-   public int GetLives() {
-     return lives;
-   }
-    
-    //MADE BY AHMED
-    /*Attack the grid with power accordingly
-    * @param row - the row of the grid
-    *        col - the col of the grid
-    *        opponent - opponent player object
-    *        currPLayer = currplayer object
-    */
-    public void PowerAttack(int row, int col, Player opponent, Player currPlayer){
-       
-    }
+
+  //MADE BY AHMED
+  /* Attack the grid with power accordingly
+   * @param row - the row of the grid
+   * @param col - the column of the grid
+   * @param opponent - the opponent player whose ship grid will be attacked
+   * @param currPlayer - the current player who is performing the attack
+   */
+  public void PowerAttack(int row, int col, Player opponent, Player currPlayer) {
+    // Implementation of the Cruiser's power attack
+  }
 }

@@ -1,79 +1,40 @@
-//Made By Aayush
+// Made By Aayush
 import java.util.Random;
 
 public class Carrier extends Ships {
-  private final int Power;            //The variable to hold the power uniquely assigned to each ship(carrier does not have power)
-  private final int size;             //The variable to hold the size of the ship 
-  public final int identity = 1;      //The variable to hold the identity of the ship
-  private int lives;                  //The variable to hold the number of lives of the ship
+  public final int identity = 1; // The variable to hold the identity of the ship
   
   //================= CONSTRUCTOR =================//
-  public Carrier() {
-    this.Power = 0;
-    this.size = 5;
+  public Carrier(int startRow, int startColumn, int orientation, int Power, int size, int lives) {
+    super(startRow, startColumn, orientation, Power, size, lives);
   }
-  public Carrier(int startRow, int startColumn, int orientation) {
-    super(startRow, startColumn, orientation);
-    this.Power = 0;
-    this.size =5;
-    this.lives = 5;
-  }
+  
   //================ PUBLIC METHODS ===============//
   
-  /* Get the Power of the Ship
-   * @return - the power (int value)
-   */
-  public int GetPower() {
-    return Power;
-  }
-  
-  /* Gets the size of the ship 
-   * @return - the int size of ship which is based on private variable in subclass
-   */
-  public int GetSize() {
-    return size;
-  }
-  
   /* Get the identity of the ship
-     * @return - the int identity of the ship which is based on private variable in subclass
-     */
+   * @return - the int identity of the ship which is based on private variable in subclass
+   */
   public int GetIdentity() {
     return identity;
   }
   
-  /* Set the number of lives of the ship as it decreases by one 
-   @param live - the lives of the ship */
-   public void SetLives(int live) {
-     this.lives -= live;
-   }
-   
-   /* Gets the lives of the ship
-    * @return - the number of remaining lives that the ship has  
-    */
-   public int GetLives() {
-     return lives;
-   }
-   
-   //MADE BY AAYUSH
-   //Carrier has power of guaranteed attack on a ship, using recursive method
-   public void PowerAttack(int row, int col, Player opponent, Player currPlayer) {
-     // Generate random row and column indices
-     Random rand = new Random();
-     row = rand.nextInt(10); // Assuming a 10x10 grid
-     col = rand.nextInt(10);
-     // Check if there's a ship at the randomly chosen location
-     Ships ship = opponent.ShipGrid[row][col];
-     if (ship != null) {
-       // Ship exists at this location, mark it as hit
-       opponent.ShipGrid[row][col] = null; // Mark it as hit (assuming 2 represents a hit)
-       currPlayer.AttackGrid[row][col] = 1;
-       opponent.ShipGrid[row][col].SetLives(1);
-     } 
-     else {
-       // No ship at this location, try again
-       PowerAttack(row, col, opponent, currPlayer); // Recursive call to try again
-     }
-   }
-
-
+  // MADE BY AAYUSH
+  // Carrier has power of guaranteed attack on a ship, using recursive method
+  public void PowerAttack(int row, int col, Player opponent, Player currPlayer) {
+    // Generate random row and column indices
+    Random rand = new Random();
+    row = rand.nextInt(10); // Assuming a 10x10 grid
+    col = rand.nextInt(10);
+    
+    // Check if there's a ship at the randomly chosen location
+    Ships ship = opponent.ShipGrid[row][col];
+    if (ship != null) {
+      // Ship exists at this location, mark it as hit
+      currPlayer.AttackGrid[row][col] = 1;
+      ship.SetLives(ship.GetLives() - 1);
+    } else {
+      // No ship at this location, try again
+      PowerAttack(row, col, opponent, currPlayer); // Recursive call to try again
+    }
+  }
 }
