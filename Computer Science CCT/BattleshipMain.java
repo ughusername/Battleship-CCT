@@ -61,7 +61,8 @@ public class BattleshipMain {
       
       if (shipChoice > 5 || shipChoice < 1) {
         System.out.println("Invalid Choice, please choose again");
-      } else {
+      } 
+      else {
         System.out.println("Which row would you like to place the Ship");
         int row = input.nextInt();
         System.out.println("Which column would you like to place the Ship");
@@ -70,14 +71,16 @@ public class BattleshipMain {
         int orientation = input.nextInt();
         
         int check = bs.InsertShip(row - 1, col - 1, bs.CreateShip(shipChoice, row - 1, col - 1, orientation), orientation);
-        
         if (check == -4) {
           System.out.println("The Ship has already been placed, please choose another ship");
-        } else if(check == -1) {
+        } 
+        else if(check == -1) {
           System.out.println("The position chosen is out of bounds, please choose another position");
-        } else if(check == -2) {
+        } 
+        else if(check == -2) {
           System.out.println("A ship is already present in that position, please choose another box");
-        } else if (check == 1) {
+        } 
+        else if (check == 1) {
           System.out.println("Ship successfully placed");
           displayer.DisplayShipGrid(bs.GetCurrPlayer().GetShipGrid());
           count++;
@@ -98,7 +101,7 @@ public class BattleshipMain {
           int row = input.nextInt();
           System.out.println("Which column would you like to attack?");
           int col = input.nextInt();
-          int check = bs.Attack(row, col);
+          int check = bs.Attack(row-1, col-1);
           
           if (check == -1) {
             System.out.println("The position chosen is out of bounds, please choose another position");
