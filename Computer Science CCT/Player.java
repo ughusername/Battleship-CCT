@@ -80,12 +80,5 @@ public class Player {
     public int[][] GetAttackGrid() {
       return AttackGrid;
     }
-    
-    /* Adds a ship to the player's ship types array at the specified index
-     * @param shiptype - The ship type to add
-     * @param index - The index at which to add the ship type */
-    public void AddShipToShipTypesArray(Ships shiptype, int index) {
-      this.ShipTypes[index] = shiptype;
-    }
 }
   

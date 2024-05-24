@@ -35,32 +35,22 @@ public class BattleshipSystem {
    * @param orientation - the orientation of the ship (0 for horizontal, 1 for vertical)
    * @return - the created ship object
    */
-  public Ships CreateShip(int choice, int row, int col, int orientation) {
-    if (choice == 1) {
-      Ships battleShip = new Battleship(row, col, orientation, 1, 4, 4);
-      currPlayer.AddShip(battleShip, Ships.BATTLESHIP - 1);
-      return battleShip; //creates a battleship
-    } 
-    else if (choice == 2) {
-      Ships cruiser = new Cruiser(row, col, orientation, 10, 3, 3);
-      currPlayer.AddShip(cruiser, Ships.CRUISER - 1);
-      return cruiser; //creates a cruiser
-    } 
-    else if (choice == 3) {
-      Ships carrier = new Carrier(row, col, orientation, 0, 5, 5);
-      currPlayer.AddShip(carrier, Ships.CARRIER - 1);
-      return carrier; //creates a carrier
-    } 
-    else if (choice == 4) {
-      Ships destroyer = new Destroyer(row, col, orientation, 2, 2, 2);
-      currPlayer.AddShip(destroyer, Ships.DESTROYER - 1);
-      return destroyer; //creates a destroyer
-    } 
-    else {
-      Ships submarine = new Submarine(row, col, orientation, 3, 3, 3);
-      currPlayer.AddShip(submarine, Ships.SUBMARINE - 1);
-      return submarine; //creates a Submarine
-    }
+  public void CreateShips() {
+      Ships battleShip = new Battleship( 1, 4, 4);
+      currPlayer.AddShip(battleShip, Ships.BATTLESHIP - 1);//creates a battleship and adds to the players array
+
+      Ships cruiser = new Cruiser( 10, 3, 3);
+      currPlayer.AddShip(cruiser, Ships.CRUISER - 1); //creates a cruiser and adds to the players array
+
+      Ships carrier = new Carrier( 0, 5, 5);
+      currPlayer.AddShip(carrier, Ships.CARRIER - 1); //creates a carrier and adds to the players array
+
+
+      Ships destroyer = new Destroyer( 2, 2, 2);
+      currPlayer.AddShip(destroyer, Ships.DESTROYER - 1);//creates a destroyer and adds to the players array
+
+      Ships submarine = new Submarine( 3, 3, 3);
+      currPlayer.AddShip(submarine, Ships.SUBMARINE - 1); //creates a Submarine and adds to the players array
   }
   
   //MADE BY AAYUSH
@@ -71,57 +61,59 @@ public class BattleshipSystem {
    * @param orientation - the orientation of the ship (0 for horizontal, 1 for vertical)
    * @return - status code indicating the result of the insertion
    */
-  public int InsertShip(int row, int col, Ships shipType, int orientation) {
-    int size = shipType.GetSize();
+  public int InsertShip(int row, int col, int shipType, int orientation) {
+    Ships ship = currPlayer.GetShipType(shipType-1);
+    int size = ship.GetSize();
     int gridRows = currPlayer.ShipGrid.length;
     int gridCols = currPlayer.ShipGrid[0].length;
     
     // Check if the ship is already placed
-    if (shipType.GetIsPlaced()) {
+    if (ship.GetIsPlaced()) {
       return IS_PLACED;
     }
     
     // Check if row and col are within bounds
-    if (row < 0 || row >= gridRows || col < 0 || col >= gridCols) {
+    else if (row < 0 || row >= gridRows || col < 0 || col >= gridCols) {
       return OUT_OF_BOUNDS; // Out of bounds
     }
-    
-    // Check if the initial placement box is full
-    if (currPlayer.ShipGrid[row][col] != null) {
-      return INVALID_BOX; // Box is full
+
+    // Check if the initial placement box is full and all the boxes it occupies if full
+    else if (currPlayer.ShipGrid[row][col] != null) {
+      for (int i = 0; i < size; i++) {
+        if (orientation == 0) { // Horizontal placement
+          if (currPlayer.ShipGrid[row][col + i] != null) {
+            return INVALID_BOX;
+          }
+        } 
+        else { // Vertical placement
+          if (currPlayer.ShipGrid[row + i][col] != null) {
+            return INVALID_BOX;
+          }
+        }
+      }
+      return INVALID_BOX;
     }
     
     // Check if ship placement exceeds grid boundaries
-    if ((orientation == 0 && col + size > gridCols) || (orientation == 1 && row + size > gridRows)) {
+    else if ((orientation == 0 && col + size > gridCols) || (orientation == 1 && row + size > gridRows)) {
       return OUT_OF_BOUNDS; // Out of bounds
     }
     
-    // Check if the entire ship placement area is free
-    for (int i = 0; i < size; i++) {
-      if (orientation == 0) { // Horizontal placement
-        if (currPlayer.ShipGrid[row][col + i] != null) {
-          return INVALID_BOX;
-        }
-      } 
-      else { // Vertical placement
-        if (currPlayer.ShipGrid[row + i][col] != null) {
-          return INVALID_BOX;
+    else {
+      // Place the ship based on orientation
+      for (int i = 0; i < size; i++) {
+        if (orientation == 0) { // Horizontal placement
+          currPlayer.ShipGrid[row][col + i] = ship;
+        } 
+        else { // Vertical placement
+          currPlayer.ShipGrid[row + i][col] = ship;
         }
       }
+      ship.SetIsPlaced(true);
+      return SUCCESSFUL;
     }
-    
-    // Place the ship based on orientation
-    for (int i = 0; i < size; i++) {
-      if (orientation == 0) { // Horizontal placement
-        currPlayer.ShipGrid[row][col + i] = shipType;
-      } 
-      else { // Vertical placement
-        currPlayer.ShipGrid[row + i][col] = shipType;
-      }
-    }
-    shipType.SetIsPlaced(true);
-    return SUCCESSFUL;
   }
+
   
   //MADE BY AAYUSH
   /* Attack a position on the opponent's grid
@@ -142,6 +134,9 @@ public class BattleshipSystem {
         currPlayer.AttackGrid[row][col] = 1; // Mark hit on player's grid
         allPlayers[1].ShipGrid[row][col].SetLives(1); // Decrease the life of the hit ship
         allPlayers[1].ShipGrid[row][col] = null; // Update opponent's ship grid to null
+        if (allPlayers[1].ShipGrid[row][col].GetIsSunk()){
+          allPlayers[1].LifeDecrease();
+        }
         return SUCCESSFUL; // Hit
       } 
       else {
@@ -155,8 +150,8 @@ public class BattleshipSystem {
   /* Perform a power attack with the specified ship
    * @param ship - the type of ship to perform the power attack
    */
-  public int PerformPowerAttack(int ship) {
-    return currPlayer.GetShipType(ship).PowerAttack(0, 0, allPlayers[1], currPlayer); 
+  public int PerformPowerAttack(int ship) { 
+    return currPlayer.GetShipType(ship-1).PowerAttack(0, 0, allPlayers[1], currPlayer); 
   }
   
   //Made by Aayush

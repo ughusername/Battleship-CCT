@@ -14,6 +14,10 @@ public class BattleshipMain {
     BattleshipSystem bs = new BattleshipSystem(numRounds); // Create a BattleshipSystem object
     bs.SetCurrPlayer(firstPlayer - 1);        // Set the current player
     
+    bs.CreateShips();                         //Creating ships for player 1
+    bs.SwitchPlayer();                    
+    bs.CreateShips();                         //Creating ships for player 2
+    
     displayer.ShowRound(numRounds);           // Show the round number
     System.out.println("To start the battle, " + bs.GetCurrPlayerName() + ", which ship be ye placin' first?");
     displayer.DisplayShipGrid(bs.GetCurrPlayer().GetShipGrid()); // Display the current player's ship grid
@@ -24,8 +28,9 @@ public class BattleshipMain {
       int shipChoice = input.nextInt();
       
       if (shipChoice > 5 || shipChoice < 1) {
-        System.out.println("Invalid choice, ye scallywag! Try again!");
-      } else {
+        System.out.println("Invalid choice! Try again!");
+      } 
+      else {
         System.out.println("Which row shall the ship be placed in?");
         int row = input.nextInt();
         System.out.println("Which column shall the ship be placed in?");
@@ -33,15 +38,18 @@ public class BattleshipMain {
         System.out.println("Would ye like to place it vertically (1) or horizontally (0)?");
         int orientation = input.nextInt();
         
-        int check = bs.InsertShip(row - 1, col - 1, bs.CreateShip(shipChoice, row - 1, col - 1, orientation), orientation);
+        int check = bs.InsertShip(row - 1, col - 1, shipChoice, orientation);
         
         if (check == -4) {
           System.out.println("This ship be already placed, choose another one!");
-        } else if(check == -1) {
+        } 
+        else if(check == -1) {
           System.out.println("That position be out of bounds, choose another!");
-        } else if(check == -2) {
+        } 
+        else if(check == -2) {
           System.out.println("A ship be already there, choose another spot!");
-        } else if (check == 1) {
+        } 
+        else if (check == 1) {
           System.out.println("Ship successfully placed!");
           displayer.DisplayShipGrid(bs.GetCurrPlayer().GetShipGrid());
           count++;  
@@ -72,7 +80,7 @@ public class BattleshipMain {
         System.out.println("Would ye like to place it vertically (1) or horizontally (0)?");
         int orientation = input.nextInt();
         
-        int check = bs.InsertShip(row - 1, col - 1, bs.CreateShip(shipChoice, row - 1, col - 1, orientation), orientation);
+        int check = bs.InsertShip(row - 1, col - 1, shipChoice, orientation);
         if (check == -4) {
           System.out.println("This ship be already placed, choose another one!");
         } 

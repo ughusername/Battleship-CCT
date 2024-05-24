@@ -4,10 +4,6 @@ public abstract class Ships {
   public static final int CRUISER = 3;      // Cruiser identity
   public static final int DESTROYER = 4;    // Destroyer identity
   public static final int SUBMARINE = 5;    // Submarine identity
-  private int startRow;                     // The variable for the starting row of the ship
-  private int startColumn;                  // The variable for the starting column of the ship
-  private int orientation;                  // The orientation of the ship, whether the ship is horizontal or vertical
-  private int shipType;                     // The variable that holds the ship type of the ship
   private int numofShips = 5;               // The variable that holds the number of ships
   private boolean IsPlaced;                 // Variable to store if the ship is placed or not
   private boolean IsSunk;                   // Variable to store if the ship is sunk or not
@@ -22,10 +18,7 @@ public abstract class Ships {
     // Default constructor
   }
   
-  public Ships(int startRow, int startColumn, int orientation, int Power, int size, int lives) {
-    this.startColumn = startColumn;
-    this.startRow = startRow;
-    this.orientation = orientation;
+  public Ships(int Power, int size, int lives) {
     this.Power = Power;
     this.size = size;
     this.lives = lives;
@@ -62,48 +55,6 @@ public abstract class Ships {
     return numofShips;
   }
   
-  /* Set the start row of the ship
-   * @param StartRow - the starting row of the ship
-   */
-  public void SetStartRow(int StartRow) {
-    this.startRow = StartRow;
-  }
-  
-  /* Get the start row of the ship
-   * @return - the starting row of the ship
-   */
-  public int GetStartRow() {
-    return startRow;
-  }
-  
-  /* Set the start column of the ship
-   * @param startColumn - the starting column of the ship
-   */
-  public void SetStartColumn(int startColumn) {
-    this.startColumn = startColumn;
-  }
-  
-  /* Get the start column of the ship
-   * @return - the starting column of the ship
-   */
-  public int GetStartColumn() {
-    return startColumn;
-  }
-  
-  /* Set the orientation of the ship
-   * @param orientation - 0 is horizontal, 1 is vertical
-   */
-  public void SetOrientation(int orientation) {
-    this.orientation = orientation;
-  }
-  
-  /* Get the orientation of the ship
-   * @return - the orientation of the ship
-   */
-  public int GetOrientation() {
-    return orientation;
-  }
-  
   /* Get the power of the ship
    * @return - the power of the ship
    */
@@ -112,7 +63,7 @@ public abstract class Ships {
   }
 
   public void SetPower(int power){
-    this.Power = -1;
+    this.Power = power;
   }
   
   /* Get the size of the ship
@@ -154,7 +105,10 @@ public abstract class Ships {
    * @param IsSunk - if the ship is sunk or not
    */
   public void SetIsSunk(boolean IsSunk) {
-    this.IsSunk = IsSunk;
+    if (this.lives <=0){
+      this.IsSunk = true;
+      this.numofShips-=1;
+    }
   }
   
   /* Get if the ship is sunk or not

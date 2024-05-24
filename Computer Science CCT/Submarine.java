@@ -12,8 +12,8 @@ public class Submarine extends Ships {
    * @param size - the size of the submarine
    * @param lives - the number of lives of the submarine
    */
-  public Submarine(int startRow, int startColumn, int orientation, int Power, int size, int lives) {
-    super(startRow, startColumn, orientation, Power, size, lives);
+  public Submarine( int Power, int size, int lives) {
+    super( Power, size, lives);
   }
   
   //================ PUBLIC METHODS ===============//

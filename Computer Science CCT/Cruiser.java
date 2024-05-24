@@ -12,8 +12,8 @@ public class Cruiser extends Ships {
    * @param size - the size of the cruiser
    * @param lives - the number of lives of the cruiser
    */
-  public Cruiser(int startRow, int startColumn, int orientation, int Power, int size, int lives) {
-    super(startRow, startColumn, orientation, Power, size, lives);
+  public Cruiser( int Power, int size, int lives) {
+    super( Power, size, lives);
   }
   
   //================ PUBLIC METHODS ===============//

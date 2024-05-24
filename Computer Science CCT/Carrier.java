@@ -5,8 +5,8 @@ public class Carrier extends Ships {
   public final int identity = 1; // The variable to hold the identity of the ship
   
   //================= CONSTRUCTOR =================//
-  public Carrier(int startRow, int startColumn, int orientation, int Power, int size, int lives) {
-    super(startRow, startColumn, orientation, Power, size, lives);
+  public Carrier( int Power, int size, int lives) {
+    super( Power, size, lives);
   }
   
   //================ PUBLIC METHODS ===============//
