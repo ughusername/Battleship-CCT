@@ -17,6 +17,7 @@ public class BattleshipMain {
     bs.CreateShips();                         //Creating ships for player 1
     bs.SwitchPlayer();                    
     bs.CreateShips();                         //Creating ships for player 2
+    bs.SwitchPlayer();
     
     displayer.ShowRound(numRounds);           // Show the round number
     System.out.println("To start the battle, " + bs.GetCurrPlayerName() + ", which ship be ye placin' first?");
@@ -24,7 +25,7 @@ public class BattleshipMain {
     
     int count = 1;
     while(count <= 5) {  // Loop to place 5 ships for the first player
-      System.out.println(" 1. Battleship (Size = 4) \n 2. Cruiser (Size = 3) \n 3. Carrier (Size = 5) \n 4. Destroyer (Size = 2) \n 5. Submarine (Size = 3)");
+      System.out.println(" 1. Carrier (Size = 5) \n 2. BattleShip (Size = 4) \n 3. Cruiser (Size = 3) \n 4. Destroyer (Size = 2) \n 5. Submarine (Size = 3)");
       int shipChoice = input.nextInt();
       
       if (shipChoice > 5 || shipChoice < 1) {
@@ -66,7 +67,7 @@ public class BattleshipMain {
     
     count = 1;
     while(count <= 5) { // Loop to place 5 ships for the second player
-      System.out.println(" 1. Battleship (Size = 4) \n 2. Cruiser (Size = 3) \n 3. Carrier (Size = 5) \n 4. Destroyer (Size = 2) \n 5. Submarine (Size = 3)");
+      System.out.println(" 1. Carrier (Size = 5) \n 2. BattleShip (Size = 4) \n 3. Cruiser (Size = 3) \n 4. Destroyer (Size = 2) \n 5. Submarine (Size = 3)");
       int shipChoice = input.nextInt();
       
       if (shipChoice > 5 || shipChoice < 1) {
@@ -130,11 +131,15 @@ public class BattleshipMain {
       
       if (choice == 1) {
         System.out.println("Which ship be ye attackin' with?");
-        System.out.println(" 1. Battleship (Power - Will attack an entire column) \n 2. Carrier (Guaranteed attack on a ship) \n 3. Destroyer (Will attack a 2x2 grid around the position chosen) \n 4. Submarine (Attack an entire column)");
+        System.out.println(" 1. Carrier (Guaranteed attack on a ship) \n 2. Battleship (Power - Will attack an entire column) \n 3. Cruiser (No Power) \n 4. Destroyer (Will attack a 2x2 grid around the position chosen) \n 5. Submarine (Attack an entire column)");
         int shipType = input.nextInt();
+        if (shipType <1 || shipType > 5){
+          System.out.println("Invalid Choice, Please choose a number from 1-5");
+        }
+        else {
         int check = bs.PerformPowerAttack(shipType);
         if (check == 1){
-          System.out.println("ARR succesfully raided his ships");
+          System.out.println("ARR succesfully raided his ShipGrid");
         }
         else {
           System.out.println("Powers been used Captain, choose another ship");
@@ -145,6 +150,7 @@ public class BattleshipMain {
       bs.SwitchPlayer();
       System.out.println(bs.GetCurrPlayerName() + "Have a look at your ship grid and ATTACK BACK!");
       displayer.DisplayShipGrid(bs.GetCurrPlayer().GetShipGrid());
+    }
     }
     
     // Add score for the current player
