@@ -172,10 +172,14 @@ public class BattleshipSystem {
    */
   public int PerformPowerAttack(int ship, int row, int col) { 
     if (currPlayer.GetName() == 0) {
-      return currPlayer.GetShipType(ship-1).PowerAttack(row, col, allPlayers[1], currPlayer); 
+      int check = currPlayer.GetShipType(ship-1).PowerAttack(row, col, allPlayers[1], currPlayer);
+      currPlayer.GetShipType(ship-1).SetPower(-1);
+      return check;
     }
     else {
-      return currPlayer.GetShipType(ship-1).PowerAttack(row, col, allPlayers[0], currPlayer); 
+      int check = currPlayer.GetShipType(ship-1).PowerAttack(row, col, allPlayers[0], currPlayer); 
+      currPlayer.GetShipType(ship-1).SetPower(-1);
+      return check;
     }
   }
   

@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class BattleshipMain {
   public static void main(String[] args) {
+    @SuppressWarnings("resource") 
     Scanner input = new Scanner(System.in);   // Scanner for user input
     Displayer displayer = new Displayer();    // Creates a Displayer object to handle output
     displayer.GameHeader();                   // Display game header
