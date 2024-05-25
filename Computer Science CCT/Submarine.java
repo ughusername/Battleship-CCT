@@ -26,7 +26,7 @@ public class Submarine extends Ships {
   }
   
   //Made By Aayush
-  /* Submarine will attack an entire column
+  /* Submarine will attack an entire row
    * @param row - the row from which the attack starts
    * @param col - the column which the attack will be placed on
    * @param opponent - the opponent player whose ship grid will be attacked

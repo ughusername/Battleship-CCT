@@ -6,7 +6,7 @@ public class BattleshipMain {
     Displayer displayer = new Displayer();    // Creates a Displayer object to handle output
     displayer.GameHeader();                   // Display game header
     
-    System.out.println("Arrr! Welcome to Battleship, ye scurvy sea dogs! \nWho will take the first turn? Player 1 or Player 2?");
+    System.out.println("Arrr! Welcome to Battleship! \nWho will take the first turn? Player 1 or Player 2?");
     int firstPlayer = input.nextInt();        // Get the first player from user input
     
     System.out.println("How many rounds be ye wishin' to play?");
@@ -105,7 +105,9 @@ public class BattleshipMain {
     while (!bs.HasRoundWinner()) {
       System.out.println(bs.GetCurrPlayerName() + ", would ye like to use Normal Attack (0) or Power Attack (1)?");
       int choice = input.nextInt();
-      
+      if (choice < 0 || choice >1 ){
+        System.out.println("Invalid Choice, please input 0 or 1");
+      }
       if (choice == 0) {
         while (true) {
           System.out.println("Which row shall ye attack?");
@@ -116,12 +118,15 @@ public class BattleshipMain {
           
           if (check == -1) {
             System.out.println("That position be out of bounds, choose another!");
-          } else if(check == -3) {
+          } 
+          else if(check == -3) {
             System.out.println("That spot be already hit, choose another!");
-          } else if (check == 1) {
+          } 
+          else if (check == 1) {
             displayer.DisplayAttackGrid(bs.GetCurrPlayer().GetAttackGrid());
-            System.out.println("Aye, ye hit a ship! Take another shot!");
-          } else { // if miss
+            System.out.println("Bullseye Captain, ye hit a ship! Take another shot!");
+          } 
+          else { // if miss
             System.out.println("Ye missed the ship! Better luck next time.");
             displayer.DisplayAttackGrid(bs.GetCurrPlayer().GetAttackGrid());
             break;
@@ -131,26 +136,55 @@ public class BattleshipMain {
       
       if (choice == 1) {
         System.out.println("Which ship be ye attackin' with?");
-        System.out.println(" 1. Carrier (Guaranteed attack on a ship) \n 2. Battleship (Power - Will attack an entire column) \n 3. Cruiser (No Power) \n 4. Destroyer (Will attack a 2x2 grid around the position chosen) \n 5. Submarine (Attack an entire column)");
+        System.out.println(" 1. Carrier (Guaranteed attack on a ship) \n 2. Battleship (Power - Will attack an entire column) \n 3. Cruiser (No Power) \n 4. Destroyer (Will attack a 2x2 grid around the position chosen) \n 5. Submarine (Attack an entire row)");
         int shipType = input.nextInt();
-        if (shipType <1 || shipType > 5){
+        if (shipType <1 || shipType > 5 || shipType == 3){
           System.out.println("Invalid Choice, Please choose a number from 1-5");
         }
         else {
-        int check = bs.PerformPowerAttack(shipType);
-        if (check == 1){
-          System.out.println("ARR succesfully raided his ShipGrid");
+          if (shipType == 2) { //Battleship
+            System.out.println("Which column woud you like to attack?");
+            int col = input.nextInt();
+            int check = bs.PerformPowerAttack(shipType,0,col);
+            if (check == 1){
+              System.out.println("ARR succesfully raided his ShipGrid");
+            }
+            else {
+              System.out.println("Powers been used Captain, choose another ship");
+            }
+          }
+          else if (shipType ==4) { //Destroyer
+            System.out.println("Which row would you like to attack");
+            int row = input.nextInt();
+            System.out.println("Which column would you like to attack");
+            int col = input.nextInt();
+            int check = bs.PerformPowerAttack(shipType,row,col);
+            if (check == 1){
+              System.out.println("ARR succesfully raided his ShipGrid");
+            }
+            else {
+              System.out.println("Powers been used Captain, choose another ship");
+            }
+          }
+          else if(shipType == 5){
+            System.out.println("Which row would you like to attack");
+            int row = input.nextInt();
+            int check = bs.PerformPowerAttack(shipType,row,0);
+            if (check == 1){
+              System.out.println("ARR succesfully raided his ShipGrid");
+            }
+            else {
+              System.out.println("Powers been used Captain, choose another ship");
+            }
+          }
+          
+          displayer.DisplayAttackGrid(bs.GetCurrPlayer().GetAttackGrid());
         }
-        else {
-          System.out.println("Powers been used Captain, choose another ship");
-        }
-        displayer.DisplayAttackGrid(bs.GetCurrPlayer().GetAttackGrid());
+        
+        bs.SwitchPlayer();
+        System.out.println(bs.GetCurrPlayerName() + "Have a look at your ship grid and ATTACK BACK!");
+        displayer.DisplayShipGrid(bs.GetCurrPlayer().GetShipGrid());
       }
-      
-      bs.SwitchPlayer();
-      System.out.println(bs.GetCurrPlayerName() + "Have a look at your ship grid and ATTACK BACK!");
-      displayer.DisplayShipGrid(bs.GetCurrPlayer().GetShipGrid());
-    }
     }
     
     // Add score for the current player
