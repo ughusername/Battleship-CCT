@@ -117,21 +117,21 @@ public class BattleshipMain {
           int col = input.nextInt();
           int check = bs.Attack(row - 1, col - 1);
           
-          if (check == -1) {
+          if (check == -2) {
             System.out.println("That position be out of bounds, choose another!");
           } 
           else if(check == -3) {
             System.out.println("That spot be already hit, choose another!");
           } 
-          else if (check == 1) {
-            displayer.DisplayAttackGrid(bs.GetCurrPlayer().GetAttackGrid());
-            System.out.println("Bullseye Captain, ye hit a ship! Take another shot!");
-          } 
-          else { // if miss
+          else if (check == -1) {
             System.out.println("Ye missed the ship! Better luck next time.");
             displayer.DisplayAttackGrid(bs.GetCurrPlayer().GetAttackGrid());
             break;
           }
+          else if (check == 1) {
+            displayer.DisplayAttackGrid(bs.GetCurrPlayer().GetAttackGrid());
+            System.out.println("Bullseye Captain, ye hit a ship! Take another shot!");
+          } 
         }
       }
       
@@ -197,5 +197,15 @@ public class BattleshipMain {
     // Add score for the current player after switching
     lives = bs.GetCurrPlayer().GetLives();
     bs.GetCurrPlayer().AddScore(lives * 10);
+
+    displayer.ScoreBoard(bs.GetAllPlayers());
+    
+    int winner = bs.GetGameWinnner();
+    if (winner == 0){
+      System.out.println("Captain 1 you have successfuly won the game");
+    }
+    else {
+      System.out.println("Captain 2 you have succesfully won the game");
+    }
   }
 }

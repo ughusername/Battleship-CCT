@@ -23,17 +23,36 @@ public class BattleshipSystem {
   }
   
   //========================= Private Method======================//
+  //MADE BY AAYUSH
+  /*Execute Attack method 
+   * @param row - the row to attack
+   * @param col - the column to attack
+   * @param opponentindex - the index of the opponent in the array
+   * @return - result of the attack
+   *         Returns  1, if ship is attacked succesfully
+   *         Return  -1, if miss
+   */
+  private int ExecuteAttack(int row, int col, int opponentindex){
+    if (allPlayers[opponentindex].ShipGrid[row][col] != null) {
+      currPlayer.AttackGrid[row][col] = 1; // Mark hit on player's grid
+      allPlayers[opponentindex].ShipGrid[row][col].SetLives(1); // Decrease the life of the hit ship
+      boolean isSunk = allPlayers[1].ShipGrid[row][col].GetIsSunk();
+      allPlayers[opponentindex].ShipGrid[row][col] = null; // Update opponent's ship grid to null
+      if (isSunk){
+        allPlayers[1].LifeDecrease();
+      }
+      return SUCCESSFUL; // Hit
+    } 
+    else {
+      currPlayer.AttackGrid[row][col] = -1; // Mark miss on player's grid
+      return MISS; // Miss
+    }
+  }
   
   //========================= PUBLIC METHODS======================//
-  //MADE BY AHMHED & AAYUSH
   
-  //Made by Aayush
-  /* Create a ship based on the given choice
-   * @param choice - the type of ship to create
-   * @param row - the starting row of the ship
-   * @param col - the starting column of the ship
-   * @param orientation - the orientation of the ship (0 for horizontal, 1 for vertical)
-   * @return - the created ship object
+  //MADE BY AAYUSH
+  /* Create a ships for each player and add it in the players array
    */
   public void CreateShips() {
     Ships battleShip = new Battleship( 1, 4, 4);
@@ -59,7 +78,11 @@ public class BattleshipSystem {
    * @param col - the starting column of the ship
    * @param shipType - the type of ship to place
    * @param orientation - the orientation of the ship (0 for horizontal, 1 for vertical)
-   * @return - status code indicating the result of the insertion
+   * @return - the result of the insertion
+   *         Returns 1, if ship is inserted succesfully
+   *         Returns -4, if ship is already placed
+   *         Returns -1, if position is out of bounds
+   *         Returns -2, if the position chosen is invalid
    */
   public int InsertShip(int row, int col, int shipType, int orientation) {
     Ships ship = currPlayer.GetShipType(shipType-1);
@@ -119,49 +142,25 @@ public class BattleshipSystem {
   /* Attack a position on the opponent's grid
    * @param row - the row to attack
    * @param col - the column to attack
-   * @return - status code indicating the result of the attack
+   * @return - result of the attack
+   *         Returns  1, if ship is attacked succesfully
+   *         Returns -3, if the position is already hit
+   *         Returns -2, if the position chosen is out of bounds
+   *         Return  -1, if miss
    */
   public int Attack(int row, int col) {
     if (row >= currPlayer.AttackGrid.length || col >= currPlayer.AttackGrid[0].length) {
-      return OUT_OF_BOUNDS; 
+      return INVALID_BOX; 
     } 
     else if (currPlayer.AttackGrid[row][col] == 1 || currPlayer.AttackGrid[row][col] == -1) {
       return is_HIT; // Already hit
     } 
     else {
       if (currPlayer.GetName() == 0) { //if Captain 1
-        // Check if the attack hits a ship on the opponent's grid
-        if (allPlayers[1].ShipGrid[row][col] != null) {
-          currPlayer.AttackGrid[row][col] = 1; // Mark hit on player's grid
-          allPlayers[1].ShipGrid[row][col].SetLives(1); // Decrease the life of the hit ship
-          boolean isSunk = allPlayers[1].ShipGrid[row][col].GetIsSunk();
-          allPlayers[1].ShipGrid[row][col] = null; // Update opponent's ship grid to null
-          if (isSunk){
-            allPlayers[1].LifeDecrease();
-          }
-          return SUCCESSFUL; // Hit
-        } 
-        else {
-          currPlayer.AttackGrid[row][col] = -1; // Mark miss on player's grid
-          return MISS; // Miss
-        }
+        return ExecuteAttack(row, col, 1);
       }
       else { //if Captain 2
-        // Check if the attack hits a ship on the opponent's grid
-        if (allPlayers[0].ShipGrid[row][col] != null) {
-          currPlayer.AttackGrid[row][col] = 1; // Mark hit on player's grid
-          allPlayers[0].ShipGrid[row][col].SetLives(1); // Decrease the life of the hit ship
-          boolean isSunk = allPlayers[0].ShipGrid[row][col].GetIsSunk();
-          allPlayers[0].ShipGrid[row][col] = null; // Update opponent's ship grid to null
-          if (isSunk){
-            allPlayers[0].LifeDecrease();
-          }
-          return SUCCESSFUL; // Hit
-        } 
-        else {
-          currPlayer.AttackGrid[row][col] = -1; // Mark miss on player's grid
-          return MISS; // Miss
-        }
+          return ExecuteAttack(row, col, 0);
       }
     }
   }
@@ -169,6 +168,7 @@ public class BattleshipSystem {
   //MADE BY AAYUSH
   /* Perform a power attack with the specified ship
    * @param ship - the type of ship to perform the power attack
+   * @return - the result of the power Attack
    */
   public int PerformPowerAttack(int ship, int row, int col) { 
     if (currPlayer.GetName() == 0) {
@@ -203,6 +203,10 @@ public class BattleshipSystem {
   public Player GetCurrPlayer() {
     return currPlayer;
   }
+
+  public Player[] GetAllPlayers() {
+    return allPlayers;
+  }  
   
   //Made by Aayush
   /* Get the name of the current player
@@ -256,8 +260,7 @@ public class BattleshipSystem {
   //Made by Aayush
   /* Check if the current round has a winner
    * @return - true if the current player has
-   * 
-   no remaining lives, false otherwise
+   *           no remaining lives, false otherwise
    */
   public boolean HasRoundWinner() {
     if (currPlayer.GetLives() == 0) {

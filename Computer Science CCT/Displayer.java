@@ -101,10 +101,10 @@ public class Displayer {
    * @param one - Object that represents player one
    * @param two - Object that represents player two
    */
-  public void ScoreBoard(Player one, Player two) {
+  public void ScoreBoard(Player[] players) {
     System.out.println("CURRENT SCORE---------------------");
-    System.out.println("PLAYER 1: " + one.GetScore());
-    System.out.println("PLAYER 2: " + two.GetScore());
+    System.out.println("PLAYER 1: " + players[0].GetScore());
+    System.out.println("PLAYER 2: " + players[1].GetScore());
     System.out.println("----------------------------------");
   }
 
